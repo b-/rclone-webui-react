@@ -49,8 +49,53 @@ exports[`App Component should match snapshot 1`] = `
           />
           <Route
             element={<UNDEFINED />}
-            path="/"
-          />
+          >
+            <Route
+              element={<UNDEFINED />}
+              key="0"
+              path="/newdrive/edit/:drivePrefix"
+            />
+            <Route
+              element={<UNDEFINED />}
+              key="1"
+              path="/newdrive"
+            />
+            <Route
+              element={<UNDEFINED />}
+              key="2"
+              path="/login"
+            />
+            <Route
+              element={<UNDEFINED />}
+              key="3"
+              path="/dashboard"
+            />
+            <Route
+              element={<UNDEFINED />}
+              key="4"
+              path="/"
+            />
+            <Route
+              element={<UNDEFINED />}
+              key="5"
+              path="/remoteExplorer/:remoteName/:remotePath"
+            />
+            <Route
+              element={<UNDEFINED />}
+              key="6"
+              path="/remoteExplorer"
+            />
+            <Route
+              element={<UNDEFINED />}
+              key="7"
+              path="/rcloneBackend"
+            />
+            <Route
+              element={<UNDEFINED />}
+              key="8"
+              path="/mountDashboard"
+            />
+          </Route>
         </Routes>
       </Suspense>
     </HashRouter>
