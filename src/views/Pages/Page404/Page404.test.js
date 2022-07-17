@@ -1,9 +1,9 @@
 import React from "react";
-import ReactDOM from "react-dom";
+import { createRoot } from "react-dom/client";
 import Page404 from "./Page404";
 
 it("renders without crashing", () => {
-  const div = document.createElement("div");
-  ReactDOM.render(<Page404 />, div);
-  ReactDOM.unmountComponentAtNode(div);
+  const root = createRoot(document.createElement("div"));
+  root.render(<Page404 />);
+  root.unmount();
 });

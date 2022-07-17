@@ -6,9 +6,8 @@ exports[`Remote Explorer renders should match snapshot 1`] = `
   data-test="defaultLayout"
 >
   <ErrorBoundary>
-    <AppHeader
-      fixed={true}
-      tag="header"
+    <CHeader
+      position="fixed"
     >
       <Suspense
         fallback={
@@ -23,25 +22,15 @@ exports[`Remote Explorer renders should match snapshot 1`] = `
           onLogout={[Function]}
         />
       </Suspense>
-    </AppHeader>
+    </CHeader>
     <div
       className="app-body"
     >
-      <AppSidebar
-        compact={false}
+      <CSidebar
         display="lg"
-        fixed={true}
-        isOpen={false}
-        minimized={false}
-        offCanvas={false}
-        tag="div"
+        position="fixed"
       >
-        <AppSidebarHeader
-          tag="div"
-        />
-        <AppSidebarForm
-          tag="div"
-        />
+        <CSidebarHeader />
         <Suspense
           fallback={
             <div
@@ -51,8 +40,7 @@ exports[`Remote Explorer renders should match snapshot 1`] = `
             </div>
           }
         >
-          <AppSidebarNav
-            isOpen={false}
+          <CSidebarNav
             navConfig={
               Object {
                 "items": Array [
@@ -99,126 +87,13 @@ exports[`Remote Explorer renders should match snapshot 1`] = `
                 ],
               }
             }
-            tag="nav"
           />
         </Suspense>
-        <AppSidebarFooter
-          tag="div"
-        />
-        <AppSidebarMinimizer
-          tag="button"
-          type="button"
-        />
-      </AppSidebar>
+        <CSidebarFooter />
+      </CSidebar>
       <main
         className="main"
       >
-        <AppBreadcrumb
-          appRoutes={
-            Array [
-              Object {
-                "exact": true,
-                "name": "Home",
-                "path": "/",
-              },
-              Object {
-                "component": Object {
-                  "$$typeof": Symbol(react.lazy),
-                  "_ctor": [Function],
-                  "_result": null,
-                  "_status": -1,
-                },
-                "name": "Edit Remote",
-                "path": "/newdrive/edit/:drivePrefix",
-              },
-              Object {
-                "component": Object {
-                  "$$typeof": Symbol(react.lazy),
-                  "_ctor": [Function],
-                  "_result": null,
-                  "_status": -1,
-                },
-                "exact": true,
-                "name": "New Remote",
-                "path": "/newdrive",
-              },
-              Object {
-                "component": Object {
-                  "$$typeof": Symbol(react.lazy),
-                  "_ctor": [Function],
-                  "_result": null,
-                  "_status": -1,
-                },
-                "exact": true,
-                "name": "Login Page",
-                "path": "/login",
-              },
-              Object {
-                "component": Object {
-                  "$$typeof": Symbol(react.lazy),
-                  "_ctor": [Function],
-                  "_result": null,
-                  "_status": -1,
-                },
-                "name": "Dashboard",
-                "path": "/dashboard",
-              },
-              Object {
-                "component": Object {
-                  "$$typeof": Symbol(react.lazy),
-                  "_ctor": [Function],
-                  "_result": null,
-                  "_status": -1,
-                },
-                "name": "Configs",
-                "path": "/showconfig",
-              },
-              Object {
-                "component": Object {
-                  "$$typeof": Symbol(react.lazy),
-                  "_ctor": [Function],
-                  "_result": null,
-                  "_status": -1,
-                },
-                "exact": true,
-                "name": "Explorer",
-                "path": "/remoteExplorer/:remoteName/:remotePath",
-              },
-              Object {
-                "component": Object {
-                  "$$typeof": Symbol(react.lazy),
-                  "_ctor": [Function],
-                  "_result": null,
-                  "_status": -1,
-                },
-                "name": "Explorer",
-                "path": "/remoteExplorer",
-              },
-              Object {
-                "component": Object {
-                  "$$typeof": Symbol(react.lazy),
-                  "_ctor": [Function],
-                  "_result": null,
-                  "_status": -1,
-                },
-                "name": "Rclone Backend",
-                "path": "/rcloneBackend",
-              },
-              Object {
-                "component": Object {
-                  "$$typeof": Symbol(react.lazy),
-                  "_ctor": [Function],
-                  "_result": null,
-                  "_status": -1,
-                },
-                "name": "Mount Dashboard",
-                "path": "/mountDashboard",
-              },
-            ]
-          }
-          className=""
-          tag="div"
-        />
         <Container
           fluid={true}
           tag="div"
@@ -232,77 +107,58 @@ exports[`Remote Explorer renders should match snapshot 1`] = `
               </div>
             }
           >
-            <Switch>
+            <Routes>
               <Route
+                element={[Function]}
                 key="1"
-                name="Edit Remote"
                 path="/newdrive/edit/:drivePrefix"
-                render={[Function]}
               />
               <Route
-                exact={true}
+                element={[Function]}
                 key="2"
-                name="New Remote"
                 path="/newdrive"
-                render={[Function]}
               />
               <Route
-                exact={true}
+                element={[Function]}
                 key="3"
-                name="Login Page"
                 path="/login"
-                render={[Function]}
               />
               <Route
+                element={[Function]}
                 key="4"
-                name="Dashboard"
                 path="/dashboard"
-                render={[Function]}
               />
               <Route
+                element={[Function]}
                 key="5"
-                name="Configs"
                 path="/showconfig"
-                render={[Function]}
               />
               <Route
-                exact={true}
+                element={[Function]}
                 key="6"
-                name="Explorer"
                 path="/remoteExplorer/:remoteName/:remotePath"
-                render={[Function]}
               />
               <Route
+                element={[Function]}
                 key="7"
-                name="Explorer"
                 path="/remoteExplorer"
-                render={[Function]}
               />
               <Route
+                element={[Function]}
                 key="8"
-                name="Rclone Backend"
                 path="/rcloneBackend"
-                render={[Function]}
               />
               <Route
+                element={[Function]}
                 key="9"
-                name="Mount Dashboard"
                 path="/mountDashboard"
-                render={[Function]}
               />
-              <Redirect
-                from="/"
-                to="/dashboard"
-              />
-            </Switch>
+            </Routes>
           </Suspense>
         </Container>
       </main>
     </div>
-    <AppFooter
-      fixed={false}
-      tag="footer"
-    >
+    <CFooter>
       <Suspense
         fallback={
           <div
@@ -314,7 +170,7 @@ exports[`Remote Explorer renders should match snapshot 1`] = `
       >
         <lazy />
       </Suspense>
-    </AppFooter>
+    </CFooter>
   </ErrorBoundary>
 </div>
 `;

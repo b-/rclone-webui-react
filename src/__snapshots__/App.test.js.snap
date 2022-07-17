@@ -30,37 +30,28 @@ exports[`App Component should match snapshot 1`] = `
           </div>
         }
       >
-        <Switch>
+        <Routes>
           <Route
-            exact={true}
-            name="Login Page"
+            element={<UNDEFINED />}
             path="/login"
-            render={[Function]}
           />
           <Route
-            exact={true}
-            name="Register Page"
+            element={<UNDEFINED />}
             path="/register"
-            render={[Function]}
           />
           <Route
-            exact={true}
-            name="Page 404"
+            element={<UNDEFINED />}
             path="/404"
-            render={[Function]}
           />
           <Route
-            exact={true}
-            name="Page 500"
+            element={<UNDEFINED />}
             path="/500"
-            render={[Function]}
           />
           <Route
-            name="Home"
+            element={<UNDEFINED />}
             path="/"
-            render={[Function]}
           />
-        </Switch>
+        </Routes>
       </Suspense>
     </HashRouter>
   </ErrorBoundary>
