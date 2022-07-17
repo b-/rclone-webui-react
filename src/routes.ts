@@ -1,16 +1,16 @@
 import React from "react";
 
-const MyDashboard = React.lazy(() =>
-  import("./views/RemoteManagement/NewDrive")
+const MyDashboard = React.lazy(
+  () => import("./views/RemoteManagement/NewDrive")
 );
 const Home = React.lazy(() => import("./views/Home"));
-const ShowConfig = React.lazy(() =>
-  import("./views/RemoteManagement/ShowConfig")
+const ShowConfig = React.lazy(
+  () => import("./views/RemoteManagement/ShowConfig")
 );
-const RemoteExplorerLayout = React.lazy(() =>
-  import("./views/Explorer/RemoteExplorerLayout")
+const RemoteExplorerLayout = React.lazy(
+  () => import("./views/Explorer/RemoteExplorerLayout")
 );
-const Login = React.lazy(() => import("./views/Pages/Login"));
+const Login = React.lazy(() => import("./views/Pages/Login/Login"));
 const RCloneDashboard = React.lazy(() => import("./views/RCloneDashboard"));
 const MountDashboard = React.lazy(() => import("./views/MountDashboard"));
 
