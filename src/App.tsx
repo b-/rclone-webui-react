@@ -32,8 +32,7 @@ function App() {
               <Route path="/register" element={<Register />} />
               <Route path="/404" element={<Page404 />} />
               <Route path="/500" element={<Page500 />} />
-              <Route path="/" element={<DefaultLayout />}>
-                <Route path="/" element={<DefaultLayout />} />
+              <Route element={<DefaultLayout />}>
                 {routes.map((route, idx) => {
                   return route.component ? (
                     <Route

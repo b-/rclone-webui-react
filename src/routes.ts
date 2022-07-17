@@ -17,7 +17,6 @@ const MountDashboard = React.lazy(() => import("./views/MountDashboard"));
 // https://github.com/ReactTraining/react-router/tree/master/packages/react-router-config
 // Define the routes as required
 const routes = [
-  { path: "/", exact: true, name: "Home" },
   {
     path: "/newdrive/edit/:drivePrefix",
     name: "Edit Remote",
@@ -31,7 +30,7 @@ const routes = [
   },
   { path: "/login", exact: true, name: "Login Page", component: Login },
   { path: "/dashboard", name: "Dashboard", component: Home },
-  { path: "/showconfig", name: "Configs", component: ShowConfig },
+  { path: "/", name: "Configs", component: ShowConfig },
   {
     path: "/remoteExplorer/:remoteName/:remotePath",
     exact: true,

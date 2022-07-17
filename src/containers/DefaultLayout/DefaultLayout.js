@@ -1,113 +1,79 @@
-import React, { Component, Suspense } from "react";
-import { Routes, Route } from "react-router-dom";
-import { Container } from "reactstrap";
+import React, { useEffect } from "react";
+import tw from "tailwind-styled-components";
+import { Outlet, Link, useNavigate } from "react-router-dom";
 import { getVersion } from "../../actions/versionActions";
-
-import {
-  CBreadcrumb,
-  CFooter,
-  CHeader,
-  CSidebar,
-  CSidebarFooter,
-  CSidebarHeader,
-  CSidebarNav,
-} from "@coreui/react";
-// sidebar nav config
-import navigation from "../../_nav";
-// routes config
-import routes from "../../routes";
 import { connect } from "react-redux";
 import { AUTH_KEY, LOGIN_TOKEN } from "../../utils/Constants";
-import ErrorBoundary from "../../ErrorHandling/ErrorBoundary";
+import { signOut } from "../../actions/userActions";
 
-// const DefaultAside = React.lazy(() => import('./DefaultAside'));
-const DefaultFooter = React.lazy(() => import("./DefaultFooter"));
-const DefaultHeader = React.lazy(() => import("./DefaultHeader"));
+const MenuLink = tw(Link)`block p-2`;
 
-const VERSION_NAV_ITEM_ATTRS = {
-  attributes: { target: "_blank" },
-  class: "mt-auto",
-  icon: "cui-cog",
-  url: "https://rclone.org/changelog",
-  variant: "success",
-};
-class DefaultLayout extends Component {
-  loading = () => (
-    <div className="animated fadeIn pt-1 text-center">Loading...</div>
-  );
+function DefaultLayout() {
+  const navigate = useNavigate();
 
-  get navConfig() {
-    return {
-      items: [
-        ...navigation.items,
-        {
-          name: this.props.version.version,
-          ...VERSION_NAV_ITEM_ATTRS,
-        },
-      ],
-    };
-  }
-
-  componentDidMount() {
+  useEffect(() => {
     if (
       !localStorage.getItem(AUTH_KEY) ||
       window.location.href.indexOf(LOGIN_TOKEN) > 0
     ) {
-      this.props.history.push("/login");
+      navigate("/login");
     } else {
-      this.props.getVersion();
+      getVersion();
     }
-  }
+  }, []);
 
-  render() {
-    // console.log("isConnected, default layout", this.props.isConnected);
-    return (
-      <div className="app" data-test="defaultLayout">
-        <ErrorBoundary>
-          <CHeader position="fixed">
-            <Suspense fallback={this.loading()}>
-              <DefaultHeader onLogout={(e) => this.signOut(e)} />
-            </Suspense>
-          </CHeader>
-          <div className="app-body">
-            <CSidebar position="fixed" display="lg">
-              <CSidebarHeader />
-              <Suspense fallback={this.loading()}>
-                <CSidebarNav navConfig={this.navConfig} />
-              </Suspense>
-              <CSidebarFooter />
-            </CSidebar>
-            <main className="main">
-              {/* <CBreadcrumb appRoutes={routes} /> */}
-              <Container fluid>
-                <Suspense fallback={this.loading()}>
-                  <Routes>
-                    {routes.map((route, idx) => {
-                      return route.component ? (
-                        <Route
-                          key={idx}
-                          path={route.path}
-                          // exact={route.exact}
-                          // name={route.name}
-                          element={(props) => <route.component {...props} />}
-                        />
-                      ) : null;
-                    })}
-                    {/* <Redirect from="/" to="/dashboard" /> */}
-                  </Routes>
-                </Suspense>
-              </Container>
-            </main>
+  return (
+    <div className="app" data-test="defaultLayout">
+      <div className="flex justify-between bg-black text-white text-sm font-medium">
+        <div className="flex gap-1">
+          <div className="flex items-center gap-1 p-1 mb-0">
+            <div className="w-2 h-2 bg-green-400 rounded-full" />
+            <p className="mb-0">Connected</p>
           </div>
-          <CFooter>
-            <Suspense fallback={this.loading()}>
-              <DefaultFooter />
-            </Suspense>
-          </CFooter>
-        </ErrorBoundary>
+          <p className="p-1 mb-0">
+            <strong>BW:</strong> 100KiB/S
+          </p>
+          <p className="p-1 mb-0">
+            <strong>AVG:</strong> 80KiB/S
+          </p>
+        </div>
+        <div className="flex">
+          <a
+            href="#"
+            className="p-1 mb-0 hover:bg-white hover:bg-opacity-20 text-white no-underline"
+          >
+            Tasks
+          </a>
+          <p className="pl-5 py-1 pr-1 mb-0">v1.59.1</p>
+        </div>
       </div>
-    );
-  }
+
+      <div className="flex gap-10">
+        <Link to="/">RCLONE</Link>
+        <ul className="flex gap-4">
+          <li>
+            <MenuLink to="/remoteExplorer">Explorer</MenuLink>
+          </li>
+          <li>
+            <MenuLink to="/rcloneBackend">Backend</MenuLink>
+          </li>
+          <li>
+            <MenuLink to="/mountDashboard">Mounts</MenuLink>
+          </li>
+          <li>
+            <MenuLink to="/mountDashboard" onClick={(e) => signOut(e)}>
+              Mounts
+            </MenuLink>
+          </li>
+        </ul>
+      </div>
+      <div>
+        <main>
+          <Outlet />
+        </main>
+      </div>
+    </div>
+  );
 }
 
 const mapStateToProps = (state) => ({
