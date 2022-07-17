@@ -34,6 +34,7 @@ exports[`New Mount Modal renders should match snapshot 1`] = `
     role="dialog"
     scrollable={false}
     toggle={[Function]}
+    trapFocus={false}
     unmountOnClose={true}
     zIndex={1050}
   >
