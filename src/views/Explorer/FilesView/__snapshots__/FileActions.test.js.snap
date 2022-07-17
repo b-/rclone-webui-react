@@ -67,7 +67,8 @@ exports[`File Actions renders should match snapshot 1`] = `
         <i
           className="fa fa-remove fa-lg d-inline text-danger"
         />
-         Delete 
+         Delete
+         
       </DropdownItem>
     </DropdownMenu>
   </UncontrolledButtonDropdown>

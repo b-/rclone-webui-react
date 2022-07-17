@@ -1,10 +1,10 @@
-import {combineReducers} from 'redux';
+import { combineReducers } from "redux";
 
-import statusReducer from './statusReducer';
+import statusReducer from "./statusReducer";
 import configReducer from "./configReducer";
 import explorerReducer from "./explorerReducer";
 import explorerState from "./explorerStateReducer";
-import {SIGNOUT_REQUEST} from "../actions/types";
+import { SIGNOUT_REQUEST } from "../actions/types";
 import providerStatusReducer from "./providerStatusReducer";
 import userActionsReducer from "./userActionsReducer";
 import imagesReducer from "./imagesReducer";
@@ -19,12 +19,12 @@ import mountReducer from "./mountReducer";
  * @returns {any}
  */
 const rootReducer = (state, action) => {
-    if (action.type === SIGNOUT_REQUEST) {
-        localStorage.clear();
-        state = undefined;
-    }
+  if (action.type === SIGNOUT_REQUEST) {
+    localStorage.clear();
+    state = undefined;
+  }
 
-    return appReducer(state, action);
+  return appReducer(state, action);
 };
 
 /**
@@ -32,16 +32,16 @@ const rootReducer = (state, action) => {
  * @type {Reducer<any>}
  */
 const appReducer = combineReducers({
-    status: statusReducer,
-    config: configReducer,
-    remote: explorerReducer,
-    explorer: explorerState,
-    providerStatus: providerStatusReducer,
-    user: userActionsReducer,
-    imageLoader: imagesReducer,
-    version: versionReducer,
-    mount: mountReducer,
-    // remoteOps: remoteOpsReducer
+  status: statusReducer,
+  config: configReducer,
+  remote: explorerReducer,
+  explorer: explorerState,
+  providerStatus: providerStatusReducer,
+  user: userActionsReducer,
+  imageLoader: imagesReducer,
+  version: versionReducer,
+  mount: mountReducer,
+  // remoteOps: remoteOpsReducer
 });
 
 export default rootReducer;

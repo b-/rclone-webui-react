@@ -1,5 +1,5 @@
 import React from "react";
 
-it('test API', () => {
-    expect(true).toEqual(true);
+it("test API", () => {
+  expect(true).toEqual(true);
 });

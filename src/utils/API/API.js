@@ -1,27 +1,27 @@
 import axios from "axios";
-import {isLocalRemoteName} from "../Tools";
-import {AUTH_KEY, IP_ADDRESS_KEY} from "../Constants";
+import { isLocalRemoteName } from "../Tools";
+import { AUTH_KEY, IP_ADDRESS_KEY } from "../Constants";
 import urls from "./endpoint";
 
 /**
  * Global level axios configuration. These settings are automatically used in other places by using an axiosInstance instead of axios directly
  */
 let axiosInstance = axios.create({
-    headers: {'Content-Type': 'application/json'},
-    responseType: "json"
+  headers: { "Content-Type": "application/json" },
+  responseType: "json",
 });
 
 /**
  * Interceptor adds basic authentication to every axios request.
  */
 axiosInstance.interceptors.request.use(
-    config => {
-        config.baseURL = localStorage.getItem(IP_ADDRESS_KEY);
+  (config) => {
+    config.baseURL = localStorage.getItem(IP_ADDRESS_KEY);
 
-        config.headers.Authorization = 'Basic ' + localStorage.getItem(AUTH_KEY);
-        return config;
-    },
-    error => Promise.reject(error)
+    config.headers.Authorization = "Basic " + localStorage.getItem(AUTH_KEY);
+    return config;
+  },
+  (error) => Promise.reject(error)
 );
 
 /**
@@ -34,8 +34,23 @@ axiosInstance.interceptors.request.use(
  * @param IsDir     {boolean}   Determines whether the current path is a directory (true) or a file (false)
  * @returns         {Promise<*>}
  */
-export function performMoveFile(srcFs, srcRemote, dstFs, dstRemote, Name, IsDir) {
-    return performCopyOrMoveFile(srcFs, srcRemote, dstFs, dstRemote, Name, IsDir, 'move');
+export function performMoveFile(
+  srcFs,
+  srcRemote,
+  dstFs,
+  dstRemote,
+  Name,
+  IsDir
+) {
+  return performCopyOrMoveFile(
+    srcFs,
+    srcRemote,
+    dstFs,
+    dstRemote,
+    Name,
+    IsDir,
+    "move"
+  );
 }
 
 /**
@@ -48,8 +63,23 @@ export function performMoveFile(srcFs, srcRemote, dstFs, dstRemote, Name, IsDir)
  * @param IsDir     {boolean}   Determines whether the current path is a directory (true) or a file (false)
  * @returns         {Promise<*>}
  */
-export function performCopyFile(srcFs, srcRemote, dstFs, dstRemote, Name, IsDir) {
-    return performCopyOrMoveFile(srcFs, srcRemote, dstFs, dstRemote, Name, IsDir, 'copy');
+export function performCopyFile(
+  srcFs,
+  srcRemote,
+  dstFs,
+  dstRemote,
+  Name,
+  IsDir
+) {
+  return performCopyOrMoveFile(
+    srcFs,
+    srcRemote,
+    dstFs,
+    dstRemote,
+    Name,
+    IsDir,
+    "copy"
+  );
 }
 
 /**
@@ -64,65 +94,68 @@ export function performCopyFile(srcFs, srcRemote, dstFs, dstRemote, Name, IsDir)
  * @param mode      {string}    Determines whether to copy or move. Allowed values: "copy", "move".
  * @returns         {Promise<AxiosResponse<T>>}
  */
-async function performCopyOrMoveFile(srcFs, srcRemote, dstFs, dstRemote, Name, IsDir, mode) {
-    let url = "";
-    if (mode === "move") {
-        if (IsDir) {
-            url = urls.moveDir;
-        } else {
-            url = urls.moveFile;
-        }
-    } else {
-        if (IsDir) {
-            url = urls.copyDir;
-        } else {
-            url = urls.copyFile;
-        }
-    }
-
-    if (isLocalRemoteName(srcFs)) {
-        srcFs = "";
-    }
-
-    if (isLocalRemoteName(dstFs)) {
-        dstFs = "";
-    }
-
-    let data = {
-        _async: true
-    };
-
-
+async function performCopyOrMoveFile(
+  srcFs,
+  srcRemote,
+  dstFs,
+  dstRemote,
+  Name,
+  IsDir,
+  mode
+) {
+  let url = "";
+  if (mode === "move") {
     if (IsDir) {
-
-        const splitRes = srcRemote.split('/');
-
-        data = {
-            ...data,
-            srcFs: srcFs + srcRemote,
-            dstFs: dstFs + dstRemote + "/" + splitRes[splitRes.length - 1],
-        };
-        console.log("DirOp:", data);
-        return await axiosInstance.post(url, data);
-
+      url = urls.moveDir;
     } else {
-        if (dstRemote === "") {
-            dstRemote = Name;
-        } else {
-            dstRemote += "/" + Name;
-        }
-
-        data = {
-            ...data,
-            srcFs: srcFs,
-            srcRemote: srcRemote,
-            dstFs: dstFs,
-            dstRemote: dstRemote,
-        };
-        return await axiosInstance.post(url, data);
-
+      url = urls.moveFile;
     }
-}
+  } else {
+    if (IsDir) {
+      url = urls.copyDir;
+    } else {
+      url = urls.copyFile;
+    }
+  }
 
+  if (isLocalRemoteName(srcFs)) {
+    srcFs = "";
+  }
+
+  if (isLocalRemoteName(dstFs)) {
+    dstFs = "";
+  }
+
+  let data = {
+    _async: true,
+  };
+
+  if (IsDir) {
+    const splitRes = srcRemote.split("/");
+
+    data = {
+      ...data,
+      srcFs: srcFs + srcRemote,
+      dstFs: dstFs + dstRemote + "/" + splitRes[splitRes.length - 1],
+    };
+    console.log("DirOp:", data);
+    return await axiosInstance.post(url, data);
+  } else {
+    if (dstRemote === "") {
+      dstRemote = Name;
+    } else {
+      dstRemote += "/" + Name;
+    }
+
+    data = {
+      ...data,
+      srcFs: srcFs,
+      srcRemote: srcRemote,
+      dstFs: dstFs,
+      dstRemote: dstRemote,
+    };
+    return await axiosInstance.post(url, data);
+  }
+}
 
 export default axiosInstance;

@@ -4,12 +4,11 @@
  * @returns {boolean}
  */
 export function isEmpty(obj) {
-    if (Array.isArray(obj)) return obj.length === 0;
-    for (let key in obj) {
-        if (obj.hasOwnProperty(key))
-            return false;
-    }
-    return true;
+  if (Array.isArray(obj)) return obj.length === 0;
+  for (let key in obj) {
+    if (obj.hasOwnProperty(key)) return false;
+  }
+  return true;
 }
 
 /**
@@ -18,10 +17,10 @@ export function isEmpty(obj) {
  * @returns {number}
  */
 export function bytesToMB(bytes) {
-    if (bytes === 0) return 0;
-    const mb = bytes / 1024 / 1024;
+  if (bytes === 0) return 0;
+  const mb = bytes / 1024 / 1024;
 
-    return mb;
+  return mb;
 }
 
 /**
@@ -30,10 +29,10 @@ export function bytesToMB(bytes) {
  * @returns {number}
  */
 export function bytesToKB(bytes) {
-    if (bytes === 0) return 0;
-    const kb = bytes / 1024;
+  if (bytes === 0) return 0;
+  const kb = bytes / 1024;
 
-    return kb;
+  return kb;
 }
 
 /**
@@ -42,10 +41,10 @@ export function bytesToKB(bytes) {
  * @returns {number}
  */
 export function bytesToGB(bytes) {
-    if (bytes === 0) return 0;
-    const mb = bytes / 1024 / 1024 / 1024;
+  if (bytes === 0) return 0;
+  const mb = bytes / 1024 / 1024 / 1024;
 
-    return mb;
+  return mb;
 }
 
 /**
@@ -54,9 +53,9 @@ export function bytesToGB(bytes) {
  * @returns {number}
  */
 export function bpsToMbps(bps) {
-    if (bps === 0) return 0;
-    const mbps = bytesToMB(bps);
-    return mbps;
+  if (bps === 0) return 0;
+  const mbps = bytesToMB(bps);
+  return mbps;
 }
 
 /**
@@ -66,15 +65,15 @@ export function bpsToMbps(bps) {
  * @returns {string}
  */
 export function formatBytes(bytes, decimals = 2) {
-    if (bytes < 1) return '0 B';
+  if (bytes < 1) return "0 B";
 
-    const k = 1024;
-    const dm = decimals < 0 ? 0 : decimals;
-    const sizes = ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
+  const k = 1024;
+  const dm = decimals < 0 ? 0 : decimals;
+  const sizes = ["B", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB"];
 
-    const i = Math.floor(Math.log(bytes) / Math.log(k));
+  const i = Math.floor(Math.log(bytes) / Math.log(k));
 
-    return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
+  return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + " " + sizes[i];
 }
 
 /**
@@ -83,15 +82,17 @@ export function formatBytes(bytes, decimals = 2) {
  * @returns {string}
  */
 export function secondsToMinutesHourString(seconds) {
-    if (seconds === 0) {
-        return `00:00:00 S`;
-    }
-    let minutes = seconds / 60;
-    seconds = seconds % 60;
-    let hours = minutes / 60;
-    minutes = minutes % 60;
+  if (seconds === 0) {
+    return `00:00:00 S`;
+  }
+  let minutes = seconds / 60;
+  seconds = seconds % 60;
+  let hours = minutes / 60;
+  minutes = minutes % 60;
 
-    return `${Math.round(hours)}:${Math.round(minutes)}:${Math.round(seconds)} hrs`;
+  return `${Math.round(hours)}:${Math.round(minutes)}:${Math.round(
+    seconds
+  )} hrs`;
 }
 
 /**
@@ -100,35 +101,35 @@ export function secondsToMinutesHourString(seconds) {
  * @returns {string}
  */
 export function secondsToStr(seconds) {
-    // TIP: to find current time in milliseconds, use:
-    // var  current_time_milliseconds = new Date().getTime();
+  // TIP: to find current time in milliseconds, use:
+  // var  current_time_milliseconds = new Date().getTime();
 
-    function numberEnding(number) {
-        return (number > 1) ? 's' : '';
-    }
+  function numberEnding(number) {
+    return number > 1 ? "s" : "";
+  }
 
-    let years = Math.floor(seconds / 31536000);
-    if (years) {
-        return years + ' year' + numberEnding(years);
-    }
-    //TODO: Months! Maybe weeks?
-    let days = Math.floor((seconds %= 31536000) / 86400);
-    if (days) {
-        return days + ' day' + numberEnding(days);
-    }
-    let hours = Math.floor((seconds %= 86400) / 3600);
-    if (hours) {
-        return hours + ' hour' + numberEnding(hours);
-    }
-    let minutes = Math.floor((seconds %= 3600) / 60);
-    if (minutes) {
-        return minutes + ' minute' + numberEnding(minutes);
-    }
-    seconds = seconds % 60;
-    if (seconds) {
-        return seconds.toFixed(2) + ' second' + numberEnding(seconds);
-    }
-    return 'Just now'; //'just now' //or other string you like;
+  let years = Math.floor(seconds / 31536000);
+  if (years) {
+    return years + " year" + numberEnding(years);
+  }
+  //TODO: Months! Maybe weeks?
+  let days = Math.floor((seconds %= 31536000) / 86400);
+  if (days) {
+    return days + " day" + numberEnding(days);
+  }
+  let hours = Math.floor((seconds %= 86400) / 3600);
+  if (hours) {
+    return hours + " hour" + numberEnding(hours);
+  }
+  let minutes = Math.floor((seconds %= 3600) / 60);
+  if (minutes) {
+    return minutes + " minute" + numberEnding(minutes);
+  }
+  seconds = seconds % 60;
+  if (seconds) {
+    return seconds.toFixed(2) + " second" + numberEnding(seconds);
+  }
+  return "Just now"; //'just now' //or other string you like;
 }
 
 /**
@@ -138,8 +139,7 @@ export function secondsToStr(seconds) {
  * @returns {boolean | * | never}
  */
 export function baseValidator(regex, str) {
-
-    return regex.test(str);
+  return regex.test(str);
 }
 
 /**
@@ -148,11 +148,10 @@ export function baseValidator(regex, str) {
  * @returns {boolean|*|never}
  */
 export function validateSizeSuffix(str) {
-    const regex = /^(off|(([0-9]+[.][0-9]+|[0-9]+)([KMGTP])))$/i;
+  const regex = /^(off|(([0-9]+[.][0-9]+|[0-9]+)([KMGTP])))$/i;
 
-    return baseValidator(regex, str);
+  return baseValidator(regex, str);
 }
-
 
 /**
  * Validate Size Suffix of the format (off | 1K | 1M | 100G | 10P ) etc
@@ -160,9 +159,9 @@ export function validateSizeSuffix(str) {
  * @returns {boolean|*|never}
  */
 export function validateBoolean(str) {
-    const regex = /^(false|true)$/i;
+  const regex = /^(false|true)$/i;
 
-    return baseValidator(regex, str);
+  return baseValidator(regex, str);
 }
 
 /**
@@ -171,8 +170,8 @@ export function validateBoolean(str) {
  * @returns {boolean|*|never}
  */
 export function validateInt(str) {
-    const regex = /^([0-9]+)$/;
-    return baseValidator(regex, str);
+  const regex = /^([0-9]+)$/;
+  return baseValidator(regex, str);
 }
 
 /**
@@ -181,8 +180,8 @@ export function validateInt(str) {
  * @returns {boolean|*|never}
  */
 export function validateDuration(str) {
-    const regex = /^(\d+[h])?(\d+[m])?(\d+[s])?(\d+ms)??$/i;
-    return baseValidator(regex, str);
+  const regex = /^(\d+[h])?(\d+[m])?(\d+[s])?(\d+ms)??$/i;
+  return baseValidator(regex, str);
 }
 
 /**
@@ -190,8 +189,8 @@ export function validateDuration(str) {
  * @returns {boolean|*|never}
  * */
 export function validateDriveName(name) {
-    const regex = /^[0-9A-Za-z_-]*$/i;
-    return baseValidator(regex, name);
+  const regex = /^[0-9A-Za-z_-]*$/i;
+  return baseValidator(regex, name);
 }
 
 /**
@@ -199,8 +198,8 @@ export function validateDriveName(name) {
  * @param url {string} URL to be opened.
  */
 export function openInNewTab(url) {
-    let win = window.open(url, '_blank');
-    win.focus();
+  let win = window.open(url, "_blank");
+  win.focus();
 }
 
 /**
@@ -211,12 +210,11 @@ export function openInNewTab(url) {
  */
 
 export function findFromConfig(config, name) {
-    const currentConfig = config.find((ele, idx, array) => {
-        return (name === ele.Prefix);
-    });
-    return currentConfig;
+  const currentConfig = config.find((ele, idx, array) => {
+    return name === ele.Prefix;
+  });
+  return currentConfig;
 }
-
 
 /**
  * Helper function to add semicolon to the last.
@@ -226,13 +224,13 @@ export function findFromConfig(config, name) {
  * @returns {string}
  */
 export function addColonAtLast(name) {
-    if (name.indexOf(':') === -1) {
-        if (name[name.length - 1] !== ":") {
-            name = name + ":"
-        }
+  if (name.indexOf(":") === -1) {
+    if (name[name.length - 1] !== ":") {
+      name = name + ":";
     }
+  }
 
-    return name;
+  return name;
 }
 
 /**
@@ -240,8 +238,8 @@ export function addColonAtLast(name) {
  * @type {{Pdf: string, Images: string}}
  */
 const visibilityAssociation = {
-    Images: "image/jpeg",
-    Pdf: "application/pdf",
+  Images: "image/jpeg",
+  Pdf: "application/pdf",
 };
 
 /**
@@ -251,17 +249,20 @@ const visibilityAssociation = {
  * @param checkList {$ObjMap} Provides mimeType matches for every string visibility operation eg: Images: "image/jpeg"
  * @returns {$ObjMap}
  */
-export function changeListVisibility(list, filter, checkList = visibilityAssociation) {
-    let acceptType = checkList[filter];
-    // console.log(list);
-    if (acceptType) {
-        let newList = list.filter((item) => {
-            return (item.IsDir || item.MimeType === acceptType);
-        });
-        return newList;
-    }
-    return list;
-
+export function changeListVisibility(
+  list,
+  filter,
+  checkList = visibilityAssociation
+) {
+  let acceptType = checkList[filter];
+  // console.log(list);
+  if (acceptType) {
+    let newList = list.filter((item) => {
+      return item.IsDir || item.MimeType === acceptType;
+    });
+    return newList;
+  }
+  return list;
 }
 
 /**
@@ -272,15 +273,14 @@ export function changeListVisibility(list, filter, checkList = visibilityAssocia
  * @returns {*}
  */
 export function changeSearchFilter(list, searchQuery = "") {
-    searchQuery = searchQuery.toLowerCase();
-    if (searchQuery) {
-        let newList = list.filter((item) => {
-            return item.Name.toLowerCase().includes(searchQuery);
-        });
-        return newList;
-    }
-    return list;
-
+  searchQuery = searchQuery.toLowerCase();
+  if (searchQuery) {
+    let newList = list.filter((item) => {
+      return item.Name.toLowerCase().includes(searchQuery);
+    });
+    return newList;
+  }
+  return list;
 }
 
 /**
@@ -290,7 +290,7 @@ export function changeSearchFilter(list, searchQuery = "") {
  * @returns {boolean}
  */
 export function isLocalRemoteName(remoteName) {
-    return (remoteName && remoteName !== "" && remoteName[0] === "/");
+  return remoteName && remoteName !== "" && remoteName[0] === "/";
 }
 
 /**
@@ -308,17 +308,17 @@ export function isLocalRemoteName(remoteName) {
 //     }, {});
 // }
 export function groupByKey(xs, keyGetter) {
-    const map = new Map();
-    xs.forEach((item) => {
-        const key = keyGetter(item);
-        const collection = map.get(key);
-        if (!collection) {
-            map.set(key, [item]);
-        } else {
-            collection.push(item);
-        }
-    });
-    return map;
+  const map = new Map();
+  xs.forEach((item) => {
+    const key = keyGetter(item);
+    const collection = map.get(key);
+    if (!collection) {
+      map.set(key, [item]);
+    } else {
+      collection.push(item);
+    }
+  });
+  return map;
 }
 
 /**
@@ -328,47 +328,46 @@ export function groupByKey(xs, keyGetter) {
  * @returns {function(*, *): number}
  */
 export function getSortCompareFunction(type, ascending) {
-
-    // console.log("Here", a,b)
-    switch (type) {
-        case "name":
-            return (a, b) => {
-                let x, y;
-                x = a.Name.toLowerCase();
-                y = b.Name.toLowerCase();
-                if (x < y) {
-                    return ascending ? -1 : 1;
-                }
-                if (x > y) {return ascending ? 1 : -1;}
-                return 0;
-            }
-        case "size":
-            return (a, b) => {
-                let x, y;
-                x = a.Size ? a.Size : 0;
-                y = b.Size ? b.Size : 0;
-                return ascending ? ( x - y ) : ( y - x );
-            }
-        case "modified":
-            return (a, b) => {
-                let x, y;
-                x = new Date(a.ModTime);
-                y = new Date(b.ModTime);
-                return ascending ? (x - y) : (y - x);
-            }
-        default:
-            break;
-
-
-    }
+  // console.log("Here", a,b)
+  switch (type) {
+    case "name":
+      return (a, b) => {
+        let x, y;
+        x = a.Name.toLowerCase();
+        y = b.Name.toLowerCase();
+        if (x < y) {
+          return ascending ? -1 : 1;
+        }
+        if (x > y) {
+          return ascending ? 1 : -1;
+        }
+        return 0;
+      };
+    case "size":
+      return (a, b) => {
+        let x, y;
+        x = a.Size ? a.Size : 0;
+        y = b.Size ? b.Size : 0;
+        return ascending ? x - y : y - x;
+      };
+    case "modified":
+      return (a, b) => {
+        let x, y;
+        x = new Date(a.ModTime);
+        y = new Date(b.ModTime);
+        return ascending ? x - y : y - x;
+      };
+    default:
+      break;
+  }
 }
 
 export function makeUniqueID(length) {
-    let result = '';
-    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
-    const charactersLength = characters.length;
-    for (let i = 0; i < length; i++) {
-        result += characters.charAt(Math.floor(Math.random() * charactersLength));
-    }
-    return result;
+  let result = "";
+  const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+  const charactersLength = characters.length;
+  for (let i = 0; i < length; i++) {
+    result += characters.charAt(Math.floor(Math.random() * charactersLength));
+  }
+  return result;
 }

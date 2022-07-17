@@ -7,7 +7,8 @@ exports[`Bandwidth Status Card should match snapshot 1`] = `
   <CardHeader
     tag="div"
   >
-    Bandwidth 
+    Bandwidth
+     
     <button
       className="btn btn-white float-right"
       onClick={[Function]}

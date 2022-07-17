@@ -11,5 +11,5 @@ The following versions are currently supported
 
 ## Reporting a Vulnerability
 
-If you find a vulnerabilty, please report it to my personal mail id: bchaitanya15@gmail.com or to Nick nick@craig-wood.com. 
+If you find a vulnerabilty, please report it to my personal mail id: bchaitanya15@gmail.com or to Nick nick@craig-wood.com.
 Your help is very much appreciated.

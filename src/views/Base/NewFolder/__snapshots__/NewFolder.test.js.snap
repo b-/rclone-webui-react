@@ -44,7 +44,8 @@ exports[`New Folder renders should match snapshot 1`] = `
     >
       Create New folder at 
       mydrive
-      : 
+      :
+       
     </ModalHeader>
     <ModalBody
       tag="div"

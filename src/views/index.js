@@ -1,11 +1,3 @@
-import {Login, Page404, Page500, Register} from './Pages';
+import { Login, Page404, Page500, Register } from "./Pages";
 
-export {
-
-    Page404,
-    Page500,
-    Register,
-    Login,
-
-};
-
+export { Page404, Page500, Register, Login };

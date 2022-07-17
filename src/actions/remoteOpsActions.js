@@ -1,12 +1,12 @@
 import {
-    CREATE_PUBLIC_LINK,
-    GET_RUNNING_JOBS,
-    GET_STATUS_FOR_RUNNING_JOB,
-    REQUEST_ERROR,
-    REQUEST_SUCCESS
-} from './types';
-import {toast} from "react-toastify";
-import {createNewPublicLink, getJobStatus} from "rclone-api";
+  CREATE_PUBLIC_LINK,
+  GET_RUNNING_JOBS,
+  GET_STATUS_FOR_RUNNING_JOB,
+  REQUEST_ERROR,
+  REQUEST_SUCCESS,
+} from "./types";
+import { toast } from "react-toastify";
+import { createNewPublicLink, getJobStatus } from "rclone-api";
 
 /**
  * Create a public link for a supported remote
@@ -15,24 +15,24 @@ import {createNewPublicLink, getJobStatus} from "rclone-api";
  * @returns {Function}
  */
 export const createPublicLink = (remoteName, remotePath) => {
-    return (dispatch) => {
-        createNewPublicLink(remoteName, remotePath).then((res) =>
-                dispatch({
-                    type: CREATE_PUBLIC_LINK,
-                    status: REQUEST_SUCCESS,
-                    payload: res
-                }),
-            (error) => {
-                dispatch({
-                    type: CREATE_PUBLIC_LINK,
-                    status: REQUEST_ERROR,
-                    payload: error
-                });
-                toast.error(`Error creating link. Please try again: ${error.data}`);
-            }
-        )
-    }
-
+  return (dispatch) => {
+    createNewPublicLink(remoteName, remotePath).then(
+      (res) =>
+        dispatch({
+          type: CREATE_PUBLIC_LINK,
+          status: REQUEST_SUCCESS,
+          payload: res,
+        }),
+      (error) => {
+        dispatch({
+          type: CREATE_PUBLIC_LINK,
+          status: REQUEST_ERROR,
+          payload: error,
+        });
+        toast.error(`Error creating link. Please try again: ${error.data}`);
+      }
+    );
+  };
 };
 
 /**
@@ -40,21 +40,23 @@ export const createPublicLink = (remoteName, remotePath) => {
  * @returns {Function}
  */
 
-export const getRunningJobs = () => dispatch => {
-    getRunningJobs().then((res) => {
-            dispatch({
-                type: GET_RUNNING_JOBS,
-                status: REQUEST_SUCCESS,
-                payload: res
-            })
-        },
-        (err) => {
-            dispatch({
-                type: GET_RUNNING_JOBS,
-                status: REQUEST_ERROR,
-                payload: err
-            });
-        })
+export const getRunningJobs = () => (dispatch) => {
+  getRunningJobs().then(
+    (res) => {
+      dispatch({
+        type: GET_RUNNING_JOBS,
+        status: REQUEST_SUCCESS,
+        payload: res,
+      });
+    },
+    (err) => {
+      dispatch({
+        type: GET_RUNNING_JOBS,
+        status: REQUEST_ERROR,
+        payload: err,
+      });
+    }
+  );
 };
 
 /**
@@ -62,21 +64,23 @@ export const getRunningJobs = () => dispatch => {
  * @param jobId {number}
  * @returns {Function}
  */
-export const getStatusForRunningJob = (jobId) => dispatch => {
-    getJobStatus(jobId).then((res) => {
-            dispatch({
-                type: GET_STATUS_FOR_RUNNING_JOB,
-                status: REQUEST_SUCCESS,
-                id: jobId,
-                payload: res
-            })
-        },
-        (err) => {
-            dispatch({
-                type: GET_STATUS_FOR_RUNNING_JOB,
-                status: REQUEST_ERROR,
-                id: jobId,
-                payload: err
-            });
-        })
+export const getStatusForRunningJob = (jobId) => (dispatch) => {
+  getJobStatus(jobId).then(
+    (res) => {
+      dispatch({
+        type: GET_STATUS_FOR_RUNNING_JOB,
+        status: REQUEST_SUCCESS,
+        id: jobId,
+        payload: res,
+      });
+    },
+    (err) => {
+      dispatch({
+        type: GET_STATUS_FOR_RUNNING_JOB,
+        status: REQUEST_ERROR,
+        id: jobId,
+        payload: err,
+      });
+    }
+  );
 };

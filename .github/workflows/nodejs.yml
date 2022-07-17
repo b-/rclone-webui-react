@@ -1,11 +1,9 @@
 name: Node CI
 
-on:
-  [push, pull_request]
+on: [push, pull_request]
 
 jobs:
   build:
-
     strategy:
       matrix:
         platform: [ubuntu-latest, macos-latest, windows-latest]
@@ -36,9 +34,9 @@ jobs:
       - name: Test Coverage
         run: |
           npm ci
-          npm run test:cov        
+          npm run test:cov
       - name: Coveralls GitHub Action
-        if:  ${{ success() }}
+        if: ${{ success() }}
         uses: coverallsapp/github-action@v1.1.1
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}

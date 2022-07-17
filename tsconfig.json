@@ -1,32 +1,25 @@
 {
-    "compilerOptions": {
-      "target": "es5",
-      "lib": [
-        "dom",
-        "dom.iterable",
-        "esnext"
-      ],
-      "allowJs": true,
-      "skipLibCheck": true,
-      "esModuleInterop": true,
-      "allowSyntheticDefaultImports": true,
-      "strict": true,
-      "forceConsistentCasingInFileNames": true,
-      "noFallthroughCasesInSwitch": true,
-      "module": "esnext",
-      "moduleResolution": "node",
-      "resolveJsonModule": true,
-      "isolatedModules": true,
-      "noEmit": true,
-      "jsx": "react",
-      //   "jsx": "react-jsx" // this is for react 18 i guess
+  "compilerOptions": {
+    "target": "es5",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "noFallthroughCasesInSwitch": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "jsx": "react",
+    //   "jsx": "react-jsx" // this is for react 18 i guess
 
-      // remove once transformation to typescript is done
-      "checkJs": false,
-      "noImplicitAny": false,
-    },
-    "include": [
-      "src"
-    ]
-  }
-  
+    // remove once transformation to typescript is done
+    "checkJs": false,
+    "noImplicitAny": false
+  },
+  "include": ["src"]
+}

@@ -1,13 +1,13 @@
-import { GET_VERSION, REQUEST_ERROR, REQUEST_SUCCESS } from '../actions/types';
+import { GET_VERSION, REQUEST_ERROR, REQUEST_SUCCESS } from "../actions/types";
 
 export const initialState = {
-  arch: '',
+  arch: "",
   decomposed: [],
-  goVersion: '',
+  goVersion: "",
   isGit: false,
-  os: '',
-  version: '',
-  hasError: false
+  os: "",
+  version: "",
+  hasError: false,
 };
 
 export default (state = initialState, action) => {
@@ -16,14 +16,14 @@ export default (state = initialState, action) => {
       return {
         ...state,
         ...action.payload,
-        hasError: false
+        hasError: false,
       };
     }
     if (action.status === REQUEST_ERROR) {
       return {
         ...state,
         error: action.payload,
-        hasError: true
+        hasError: true,
       };
     }
   }

@@ -1,44 +1,46 @@
 // Here you can add other styles
-body{
+body {
   font-family: Noto Sans, sans-serif;
 }
 
-.card, .card-header, .card-body {
+.card,
+.card-header,
+.card-body {
   border-radius: 0 !important;
 }
 
 .btn-white {
   font-style: normal;
   font-weight: normal;
-  color: rgba(44,44,44,1);
-  background-color: rgba(232,239,247,1);
+  color: rgba(44, 44, 44, 1);
+  background-color: rgba(232, 239, 247, 1);
 }
 
-.btn-primary{
-  background-color: rgba(112,202,242,1);
-  border:none ;
+.btn-primary {
+  background-color: rgba(112, 202, 242, 1);
+  border: none;
 }
 
-.card .card-header{
+.card .card-header {
   text-align: left;
-  background-color: rgba(188,201,214,1);
+  background-color: rgba(188, 201, 214, 1);
   font-style: normal;
   font-weight: bold;
-  color: rgba(44,44,44,1);
+  color: rgba(44, 44, 44, 1);
 }
 
-.card .card-subtitle{
+.card .card-subtitle {
   font-style: normal;
   font-weight: bold;
-  color: rgba(63,121,173,1);
+  color: rgba(63, 121, 173, 1);
 }
 .card .card-text {
   font-style: normal;
   font-weight: normal;
-  color: rgba(114,114,114,1);
+  color: rgba(114, 114, 114, 1);
 }
 
-.card .card-body{
+.card .card-body {
   text-align: left;
 }
 
@@ -47,19 +49,17 @@ body{
 .text-choose-layout {
   font-style: normal;
   font-weight: bold;
-  color: rgba(114,114,114,1);
+  color: rgba(114, 114, 114, 1);
 }
 
 .layout-change-button {
   background: none;
   padding: 0;
-
 }
 
 .btn-explorer-action {
   background: none;
   border: none;
-
 }
 
 .file-ops-container {
@@ -98,26 +98,42 @@ body{
 }
 
 @keyframes fadein {
-  from { opacity: 0; }
-  to   { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 /* Firefox < 16 */
 @-moz-keyframes fadein {
-  from { opacity: 0; }
-  to   { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 /* Safari, Chrome and Opera > 12.1 */
 @-webkit-keyframes fadein {
-  from { opacity: 0; }
-  to   { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 /* Internet Explorer */
 @-ms-keyframes fadein {
-  from { opacity: 0; }
-  to   { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 // END Explorer
@@ -125,32 +141,29 @@ body{
 // START REMOTE CONFIG
 
 .btn-blue {
-  background-color: rgba(63,121,173,1);
+  background-color: rgba(63, 121, 173, 1);
   color: #ffffff;
 }
 
-.btn-blue :hover{
-  background-color: rgba(63,121,173,1);
+.btn-blue :hover {
+  background-color: rgba(63, 121, 173, 1);
   color: #ffffff;
-
 }
 
 .btn-no-background {
   background: none;
   border: none;
   font-weight: bold;
-  color: rgba(44,44,44,1);
+  color: rgba(44, 44, 44, 1);
 }
 .timeline {
-
   padding-top: 20px;
   padding-bottom: 20px;
 
   h4 {
     padding-top: 10px;
     font-weight: bold;
-    color: rgba(140,140,140,1);
-
+    color: rgba(140, 140, 140, 1);
   }
 
   .btn-step-count {
@@ -159,29 +172,25 @@ body{
     border: 5px solid rgba(140, 140, 140, 1);
     color: rgba(66, 66, 66, 1);
     font-weight: bold;
-
   }
 
   .timeline-divider {
-    border: 2px solid rgba(66,66,66,1);
+    border: 2px solid rgba(66, 66, 66, 1);
     margin-top: 24px;
-
   }
 
-  .step-active{
+  .step-active {
     .btn {
-      border: 5px solid rgba(63,121,173,1);
+      border: 5px solid rgba(63, 121, 173, 1);
     }
     h4 {
-      color: rgba(66,66,66,1);
+      color: rgba(66, 66, 66, 1);
     }
   }
   .btn-step-active {
-    border: 5px solid rgba(63,121,173,1);
+    border: 5px solid rgba(63, 121, 173, 1);
   }
-
 }
-
 
 // Timeline code
 
@@ -189,7 +198,7 @@ body{
 
 // START Sidebar
 
-.sidebar{
+.sidebar {
   ul.nav {
     background-color: #ffffff;
     font-family: Nunito, sans-serif;
@@ -197,13 +206,13 @@ body{
   }
   .nav-link.active {
     background-color: #ffffff;
-    color: rgb(63,121,173);
+    color: rgb(63, 121, 173);
   }
-  .nav-link.active > .nav-icon :hover{
-    color: rgb(63,121,173);
+  .nav-link.active > .nav-icon :hover {
+    color: rgb(63, 121, 173);
   }
   .nav-link {
-    color: rgb(114,114,114);
+    color: rgb(114, 114, 114);
     padding-top: 15px;
     padding-bottom: 15px;
     border-top: 1px solid rgba(232, 239, 247, 1);
@@ -237,7 +246,7 @@ body{
 }
 
 .text-red {
-  color: #FF0000;
+  color: #ff0000;
 }
 
 .pointer-cursor {
@@ -333,7 +342,6 @@ body{
 
 .image-modal {
   margin-left: 10vw;
-
 }
 
 .image-modal .modal-content {
@@ -376,4 +384,3 @@ body{
   background: rgba(211, 211, 211, 0.23);
   color: rgb(101, 101, 101);
 }
-

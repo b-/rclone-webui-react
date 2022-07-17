@@ -1,5 +1,9 @@
-import {addColonAtLast, isLocalRemoteName} from "../utils/Tools";
-import {GET_REMOTE_ABOUT, REQUEST_ERROR, REQUEST_SUCCESS} from "../actions/types";
+import { addColonAtLast, isLocalRemoteName } from "../utils/Tools";
+import {
+  GET_REMOTE_ABOUT,
+  REQUEST_ERROR,
+  REQUEST_SUCCESS,
+} from "../actions/types";
 import axiosInstance from "../utils/API/API";
 import urls from "../utils/API/endpoint";
 
@@ -9,42 +13,43 @@ import urls from "../utils/API/endpoint";
  * @returns {Function}
  */
 export const getAboutRemote = (containerID) => {
-    return (dispatch, getState) => {
+  return (dispatch, getState) => {
+    const state = getState();
+    const currentPath = state.explorer.currentPaths[containerID];
 
-        const state = getState();
-        const currentPath = state.explorer.currentPaths[containerID];
+    let { remoteName } = currentPath;
 
-        let {remoteName} = currentPath;
+    if (remoteName) {
+      if (!isLocalRemoteName(remoteName)) {
+        remoteName = addColonAtLast(remoteName);
+      }
 
-        if (remoteName) {
-            if (!isLocalRemoteName(remoteName)) {
-                remoteName = addColonAtLast(remoteName);
-            }
+      // Remove the previous data
+      dispatch({
+        type: GET_REMOTE_ABOUT,
+        status: REQUEST_SUCCESS,
+        id: containerID,
+        payload: {},
+      });
 
-            // Remove the previous data
-            dispatch({
-                type: GET_REMOTE_ABOUT,
-                status: REQUEST_SUCCESS,
-                id: containerID,
-                payload: {}
-            });
-
-            axiosInstance.post(urls.getAbout, {fs: remoteName})
-                .then((res) => {
-                    dispatch({
-                        type: GET_REMOTE_ABOUT,
-                        status: REQUEST_SUCCESS,
-                        id: containerID,
-                        payload: res.data
-                    })
-                }, (res) => {
-                    dispatch({
-                        type: GET_REMOTE_ABOUT,
-                        status: REQUEST_ERROR,
-                        id: containerID,
-                        error: res
-                    })
-                })
+      axiosInstance.post(urls.getAbout, { fs: remoteName }).then(
+        (res) => {
+          dispatch({
+            type: GET_REMOTE_ABOUT,
+            status: REQUEST_SUCCESS,
+            id: containerID,
+            payload: res.data,
+          });
+        },
+        (res) => {
+          dispatch({
+            type: GET_REMOTE_ABOUT,
+            status: REQUEST_ERROR,
+            id: containerID,
+            error: res,
+          });
         }
+      );
     }
+  };
 };

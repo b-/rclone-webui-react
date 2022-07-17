@@ -1,5 +1,16 @@
-import {ENABLE_STATUS_CHECK, FETCH_STATUS, GET_BANDWIDTH, REQUEST_ERROR, REQUEST_SUCCESS, SET_BANDWIDTH} from "./types";
-import {getCurrentBandwidthSetting, getStats, setCurrentBandwidthSetting} from "rclone-api";
+import {
+  ENABLE_STATUS_CHECK,
+  FETCH_STATUS,
+  GET_BANDWIDTH,
+  REQUEST_ERROR,
+  REQUEST_SUCCESS,
+  SET_BANDWIDTH,
+} from "./types";
+import {
+  getCurrentBandwidthSetting,
+  getStats,
+  setCurrentBandwidthSetting,
+} from "rclone-api";
 
 /**
  * Gets the current status of the rclone backend.
@@ -7,19 +18,24 @@ import {getCurrentBandwidthSetting, getStats, setCurrentBandwidthSetting} from "
  * @returns {Function}
  */
 export const getStatus = () => async (dispatch, getState) => {
-    // console.log("get Status");
-    const {status} = getState();
-    if (status.checkStatus) {
-        getStats().then(res => dispatch({
-            type: FETCH_STATUS,
-            status: REQUEST_SUCCESS,
-            payload: res
-        }), error => dispatch({
-            type: FETCH_STATUS,
-            status: REQUEST_ERROR,
-            payload: error
-        }))
-    }
+  // console.log("get Status");
+  const { status } = getState();
+  if (status.checkStatus) {
+    getStats().then(
+      (res) =>
+        dispatch({
+          type: FETCH_STATUS,
+          status: REQUEST_SUCCESS,
+          payload: res,
+        }),
+      (error) =>
+        dispatch({
+          type: FETCH_STATUS,
+          status: REQUEST_ERROR,
+          payload: error,
+        })
+    );
+  }
 };
 
 /**
@@ -28,29 +44,33 @@ export const getStatus = () => async (dispatch, getState) => {
  * @param shouldEnable {boolean} It specifies whether to check for status updates from the backend or skip checking it
  * @returns {Function}
  */
-export const enableCheckStatus = (shouldEnable) => async dispatch => {
-    dispatch({
-        type: ENABLE_STATUS_CHECK,
-        payload: shouldEnable
-    })
+export const enableCheckStatus = (shouldEnable) => async (dispatch) => {
+  dispatch({
+    type: ENABLE_STATUS_CHECK,
+    payload: shouldEnable,
+  });
 };
-
 
 /**
  * Gets the current bandwidth set in the rclone backend.
  * @returns {Function}
  */
-export const getBandwidth = () => async dispatch => {
-    // console.log("get Status");
-    getCurrentBandwidthSetting().then(res => dispatch({
+export const getBandwidth = () => async (dispatch) => {
+  // console.log("get Status");
+  getCurrentBandwidthSetting().then(
+    (res) =>
+      dispatch({
         type: GET_BANDWIDTH,
         status: REQUEST_SUCCESS,
-        payload: res
-    }), error => dispatch({
+        payload: res,
+      }),
+    (error) =>
+      dispatch({
         type: GET_BANDWIDTH,
         status: REQUEST_ERROR,
-        payload: error
-    }))
+        payload: error,
+      })
+  );
 };
 
 /**
@@ -58,16 +78,20 @@ export const getBandwidth = () => async dispatch => {
  * @param newRate {string} Human readable format of size eg: 1M|2M|1.2G specifying 1MB, 2MB, 1.2GB respectively.
  * @returns {Function}
  */
-export const setBandwidth = (newRate) => async dispatch => {
-    // console.log("get Status");
-    setCurrentBandwidthSetting(newRate).then(res => dispatch({
+export const setBandwidth = (newRate) => async (dispatch) => {
+  // console.log("get Status");
+  setCurrentBandwidthSetting(newRate).then(
+    (res) =>
+      dispatch({
         type: SET_BANDWIDTH,
         status: REQUEST_SUCCESS,
-        payload: res
-    }), error => dispatch({
+        payload: res,
+      }),
+    (error) =>
+      dispatch({
         type: SET_BANDWIDTH,
         status: REQUEST_ERROR,
-        payload: error
-    }))
+        payload: error,
+      })
+  );
 };
-

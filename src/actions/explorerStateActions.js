@@ -1,19 +1,19 @@
 import {
-    CHANGE_GRID_MODE,
-    CHANGE_LOAD_IMAGES,
-    CHANGE_PATH,
-    CHANGE_REMOTE_NAME,
-    CHANGE_REMOTE_PATH,
-    CHANGE_SEARCH_QUERY,
-    CHANGE_SORT_FILTER,
-    CHANGE_VISIBILITY_FILTER,
-    CREATE_PATH,
-    NAVIGATE_BACK,
-    NAVIGATE_FWD,
-    NAVIGATE_UP,
-    REMOVE_PATH
+  CHANGE_GRID_MODE,
+  CHANGE_LOAD_IMAGES,
+  CHANGE_PATH,
+  CHANGE_REMOTE_NAME,
+  CHANGE_REMOTE_PATH,
+  CHANGE_SEARCH_QUERY,
+  CHANGE_SORT_FILTER,
+  CHANGE_VISIBILITY_FILTER,
+  CREATE_PATH,
+  NAVIGATE_BACK,
+  NAVIGATE_FWD,
+  NAVIGATE_UP,
+  REMOVE_PATH,
 } from "./types";
-import {getFiles} from "./explorerActions";
+import { getFiles } from "./explorerActions";
 
 /**
  * Changes the current path of a container using container ID
@@ -23,15 +23,15 @@ import {getFiles} from "./explorerActions";
  * @returns {Function}
  */
 export const changePath = (containerID, remoteName, remotePath) => {
-    return (dispatch) => {
-        dispatch({
-            type: CHANGE_PATH,
-            id: containerID,
-            remoteName: remoteName,
-            remotePath: remotePath
-        });
-        dispatch(getFilesForContainerID(containerID))
-    }
+  return (dispatch) => {
+    dispatch({
+      type: CHANGE_PATH,
+      id: containerID,
+      remoteName: remoteName,
+      remotePath: remotePath,
+    });
+    dispatch(getFilesForContainerID(containerID));
+  };
 };
 
 /**
@@ -41,17 +41,16 @@ export const changePath = (containerID, remoteName, remotePath) => {
  * @returns {Function}
  */
 export const changeRemoteName = (containerID, remoteName) => {
+  return (dispatch) => {
+    dispatch({
+      type: CHANGE_REMOTE_NAME,
+      remoteName: remoteName,
+      id: containerID,
+      remotePath: "",
+    });
 
-    return (dispatch) => {
-        dispatch({
-            type: CHANGE_REMOTE_NAME,
-            remoteName: remoteName,
-            id: containerID,
-            remotePath: ""
-        });
-
-        dispatch(getFilesForContainerID(containerID))
-    }
+    dispatch(getFilesForContainerID(containerID));
+  };
 };
 
 /**
@@ -60,13 +59,12 @@ export const changeRemoteName = (containerID, remoteName) => {
  * @returns {Function}
  */
 export const getFilesForContainerID = (containerID) => {
-
-    return (dispatch, getState) => {
-        const state = getState();
-        const {remoteName, remotePath} = state.explorer.currentPaths[containerID];
-        if (remoteName && remoteName !== "")
-            dispatch(getFiles(remoteName, remotePath));
-    }
+  return (dispatch, getState) => {
+    const state = getState();
+    const { remoteName, remotePath } = state.explorer.currentPaths[containerID];
+    if (remoteName && remoteName !== "")
+      dispatch(getFiles(remoteName, remotePath));
+  };
 };
 
 /**
@@ -76,14 +74,14 @@ export const getFilesForContainerID = (containerID) => {
  * @returns {Function}
  */
 export const changeRemotePath = (containerID, remotePath) => {
-    return (dispatch) => {
-        dispatch({
-            type: CHANGE_REMOTE_PATH,
-            id: containerID,
-            remotePath: remotePath
-        });
-        dispatch(getFilesForContainerID(containerID))
-    }
+  return (dispatch) => {
+    dispatch({
+      type: CHANGE_REMOTE_PATH,
+      id: containerID,
+      remotePath: remotePath,
+    });
+    dispatch(getFilesForContainerID(containerID));
+  };
 };
 
 /**
@@ -91,28 +89,24 @@ export const changeRemotePath = (containerID, remotePath) => {
  * @param containerID {string}
  * @returns {Function}
  */
-export const createPath = (containerID) => dispatch => {
-
-    dispatch({
-        type: CREATE_PATH,
-        id: containerID
-    })
+export const createPath = (containerID) => (dispatch) => {
+  dispatch({
+    type: CREATE_PATH,
+    id: containerID,
+  });
 };
-
 
 /**
  * Creates an empty path for initialization of a container.
  * @param containerID {string}
  * @returns {Function}
  */
-export const removePath = (containerID) => dispatch => {
-
-    dispatch({
-        type: REMOVE_PATH,
-        id: containerID
-    })
+export const removePath = (containerID) => (dispatch) => {
+  dispatch({
+    type: REMOVE_PATH,
+    id: containerID,
+  });
 };
-
 
 /**
  * Computes and requests the path for going one level up in the working directory.
@@ -120,14 +114,12 @@ export const removePath = (containerID) => dispatch => {
  * @param containerID
  * @returns {Function}
  */
-export const navigateUp = (containerID) => dispatch => {
-
-    dispatch({
-        type: NAVIGATE_UP,
-        id: containerID
-    });
-    dispatch(getFilesForContainerID(containerID))
-
+export const navigateUp = (containerID) => (dispatch) => {
+  dispatch({
+    type: NAVIGATE_UP,
+    id: containerID,
+  });
+  dispatch(getFilesForContainerID(containerID));
 };
 
 /**
@@ -136,16 +128,13 @@ export const navigateUp = (containerID) => dispatch => {
  * @param containerID {string}
  * @returns {Function}
  */
-export const navigateFwd = (containerID) => dispatch => {
-
-    dispatch({
-        type: NAVIGATE_FWD,
-        id: containerID
-    });
-    dispatch(getFilesForContainerID(containerID))
-
+export const navigateFwd = (containerID) => (dispatch) => {
+  dispatch({
+    type: NAVIGATE_FWD,
+    id: containerID,
+  });
+  dispatch(getFilesForContainerID(containerID));
 };
-
 
 /**
  * Navigates to one stack entry back. Works when used with navigateFwd, navigateUp.
@@ -153,14 +142,12 @@ export const navigateFwd = (containerID) => dispatch => {
  * @param containerID
  * @returns {Function}
  */
-export const navigateBack = (containerID) => dispatch => {
-
-    dispatch({
-        type: NAVIGATE_BACK,
-        id: containerID
-    });
-    dispatch(getFilesForContainerID(containerID))
-
+export const navigateBack = (containerID) => (dispatch) => {
+  dispatch({
+    type: NAVIGATE_BACK,
+    id: containerID,
+  });
+  dispatch(getFilesForContainerID(containerID));
 };
 
 /**
@@ -169,12 +156,12 @@ export const navigateBack = (containerID) => dispatch => {
  * @param filter {string}
  * @returns {Function}
  */
-export const changeVisibilityFilter = (containerID, filter) => dispatch => {
-    dispatch({
-        type: CHANGE_VISIBILITY_FILTER,
-        id: containerID,
-        filter
-    })
+export const changeVisibilityFilter = (containerID, filter) => (dispatch) => {
+  dispatch({
+    type: CHANGE_VISIBILITY_FILTER,
+    id: containerID,
+    filter,
+  });
 };
 
 /**
@@ -183,12 +170,12 @@ export const changeVisibilityFilter = (containerID, filter) => dispatch => {
  * @param mode {string}
  * @returns {Function}
  */
-export const changeGridMode = (containerID, mode) => dispatch => {
-    dispatch({
-        type: CHANGE_GRID_MODE,
-        id: containerID,
-        mode
-    })
+export const changeGridMode = (containerID, mode) => (dispatch) => {
+  dispatch({
+    type: CHANGE_GRID_MODE,
+    id: containerID,
+    mode,
+  });
 };
 
 /**
@@ -197,30 +184,30 @@ export const changeGridMode = (containerID, mode) => dispatch => {
  * @param searchQuery
  * @returns {Function}
  */
-export const setSearchQuery = (containerID, searchQuery) => dispatch => {
-    dispatch({
-        type: CHANGE_SEARCH_QUERY,
-        id: containerID,
-        searchQuery
-    })
+export const setSearchQuery = (containerID, searchQuery) => (dispatch) => {
+  dispatch({
+    type: CHANGE_SEARCH_QUERY,
+    id: containerID,
+    searchQuery,
+  });
 };
 
-export const setLoadImages = (containerID, shouldLoad) => dispatch => {
-    dispatch({
-        type: CHANGE_LOAD_IMAGES,
-        id: containerID,
-        payload: shouldLoad
-    })
+export const setLoadImages = (containerID, shouldLoad) => (dispatch) => {
+  dispatch({
+    type: CHANGE_LOAD_IMAGES,
+    id: containerID,
+    payload: shouldLoad,
+  });
 };
 
-export const changeSortFilter = (containerID, sortFilter, sortFilterAscending) => dispatch => {
+export const changeSortFilter =
+  (containerID, sortFilter, sortFilterAscending) => (dispatch) => {
     dispatch({
-        type: CHANGE_SORT_FILTER,
-        id: containerID,
-        payload: {
-            sortFilter, 
-            sortFilterAscending
-        }
-    })
-}
-
+      type: CHANGE_SORT_FILTER,
+      id: containerID,
+      payload: {
+        sortFilter,
+        sortFilterAscending,
+      },
+    });
+  };
