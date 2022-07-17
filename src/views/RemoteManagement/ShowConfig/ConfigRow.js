@@ -3,7 +3,6 @@ import axiosInstance from "../../../utils/API/API";
 import { Button } from "reactstrap";
 import * as PropTypes from "prop-types";
 import { toast } from "react-toastify";
-import { withRouter } from "react-router-dom";
 import urls from "../../../utils/API/endpoint";
 
 class ConfigRow extends React.Component {
@@ -79,4 +78,4 @@ const propTypes = {
 
 ConfigRow.propTypes = propTypes;
 
-export default withRouter(ConfigRow);
+export default ConfigRow;

@@ -1,18 +1,16 @@
 import React, { Component, Suspense } from "react";
-import { Redirect, Route, Switch } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import { Container } from "reactstrap";
 import { getVersion } from "../../actions/versionActions";
 
 import {
-  AppBreadcrumb,
-  AppFooter,
-  AppHeader,
-  AppSidebar,
-  AppSidebarFooter,
-  AppSidebarForm,
-  AppSidebarHeader,
-  AppSidebarMinimizer,
-  AppSidebarNav,
+  CBreadcrumb,
+  CFooter,
+  CHeader,
+  CSidebar,
+  CSidebarFooter,
+  CSidebarHeader,
+  CSidebarNav,
 } from "@coreui/react";
 // sidebar nav config
 import navigation from "../../_nav";
@@ -66,48 +64,46 @@ class DefaultLayout extends Component {
     return (
       <div className="app" data-test="defaultLayout">
         <ErrorBoundary>
-          <AppHeader fixed>
+          <CHeader position="fixed">
             <Suspense fallback={this.loading()}>
               <DefaultHeader onLogout={(e) => this.signOut(e)} />
             </Suspense>
-          </AppHeader>
+          </CHeader>
           <div className="app-body">
-            <AppSidebar fixed display="lg">
-              <AppSidebarHeader />
-              <AppSidebarForm />
+            <CSidebar position="fixed" display="lg">
+              <CSidebarHeader />
               <Suspense fallback={this.loading()}>
-                <AppSidebarNav navConfig={this.navConfig} />
+                <CSidebarNav navConfig={this.navConfig} />
               </Suspense>
-              <AppSidebarFooter />
-              <AppSidebarMinimizer />
-            </AppSidebar>
+              <CSidebarFooter />
+            </CSidebar>
             <main className="main">
-              <AppBreadcrumb appRoutes={routes} />
+              {/* <CBreadcrumb appRoutes={routes} /> */}
               <Container fluid>
                 <Suspense fallback={this.loading()}>
-                  <Switch>
+                  <Routes>
                     {routes.map((route, idx) => {
                       return route.component ? (
                         <Route
                           key={idx}
                           path={route.path}
-                          exact={route.exact}
-                          name={route.name}
-                          render={(props) => <route.component {...props} />}
+                          // exact={route.exact}
+                          // name={route.name}
+                          element={(props) => <route.component {...props} />}
                         />
                       ) : null;
                     })}
-                    <Redirect from="/" to="/dashboard" />
-                  </Switch>
+                    {/* <Redirect from="/" to="/dashboard" /> */}
+                  </Routes>
                 </Suspense>
               </Container>
             </main>
           </div>
-          <AppFooter>
+          <CFooter>
             <Suspense fallback={this.loading()}>
               <DefaultFooter />
             </Suspense>
-          </AppFooter>
+          </CFooter>
         </ErrorBoundary>
       </div>
     );
