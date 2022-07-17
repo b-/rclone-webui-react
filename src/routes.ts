@@ -5,7 +5,7 @@ const MyDashboard = React.lazy(
 );
 const Home = React.lazy(() => import("./views/Home"));
 const ShowConfig = React.lazy(
-  () => import("./views/RemoteManagement/ShowConfig")
+  () => import("./views/RemoteManagement/ShowConfig/ShowConfig")
 );
 const RemoteExplorerLayout = React.lazy(
   () => import("./views/Explorer/RemoteExplorerLayout")

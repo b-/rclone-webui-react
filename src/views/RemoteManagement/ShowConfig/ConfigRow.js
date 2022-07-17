@@ -13,7 +13,7 @@ class ConfigRow extends React.Component {
     this.state = {
       remote: remote,
     };
-    this.onDeleteClicked = this.onDeleteClicked.bind(this);
+    // this.onDeleteClicked = this.onDeleteClicked.bind(this);
     this.onUpdateClicked = this.onUpdateClicked.bind(this);
   }
 
@@ -23,48 +23,42 @@ class ConfigRow extends React.Component {
   };
 
   // TODO: Delete config functionality
-  onDeleteClicked() {
-    const { name } = this.state.remote;
-    let { refreshHandle } = this.props;
+  // onDeleteClicked() {
+  //   const { name } = this.state.remote;
+  //   let { refreshHandle } = this.props;
 
-    // Delete http request
-    if (
-      window.confirm(
-        `Are you sure you wish to delete ${name}? You cannot restore it once it is deleted.`
-      )
-    ) {
-      axiosInstance.post(urls.deleteConfig, { name: name }).then(
-        (res) => {
-          // console.log(res);
-          // Refresh the parent component
-          refreshHandle();
-          toast.info("Config deleted");
-        },
-        (err) => {
-          // console.log(`Error occurred: ${err}`);
-          toast.error("Error deleting config");
-        }
-      );
-    }
-  }
+  //   // Delete http request
+  //   if (
+  //     window.confirm(
+  //       `Are you sure you wish to delete ${name}? You cannot restore it once it is deleted.`
+  //     )
+  //   ) {
+  //     axiosInstance.post(urls.deleteConfig, { name: name }).then(
+  //       (res) => {
+  //         // console.log(res);
+  //         // Refresh the parent component
+  //         refreshHandle();
+  //         toast.info("Config deleted");
+  //       },
+  //       (err) => {
+  //         // console.log(`Error occurred: ${err}`);
+  //         toast.error("Error deleting config");
+  //       }
+  //     );
+  //   }
+  // }
 
   render() {
-    const { name, type } = this.state.remote;
-    const { sequenceNumber } = this.props;
+    const { name } = this.state.remote;
     return (
-      <tr data-test="configRowComponent">
-        <th scope="row">{sequenceNumber}</th>
-        <td>{name}</td>
-        <td>{type}</td>
-        <td>
+      <div className="px-4 py-2 bg-gray-200 rounded-lg">
+        <h1 className="text-lg mb-0 text-black">{name}</h1>
+        {/* <td>
           <Button className={"bg-info mr-2"} onClick={this.onUpdateClicked}>
             Update
           </Button>
-          <Button className={"bg-danger"} onClick={this.onDeleteClicked}>
-            Delete
-          </Button>
-        </td>
-      </tr>
+        </td> */}
+      </div>
     );
   }
 }
