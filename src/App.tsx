@@ -1,15 +1,11 @@
-import React, { Component } from "react";
+import React from "react";
 import { HashRouter, Routes, Route } from "react-router-dom";
-// import { renderRoutes } from 'react-router-config';
-import "./App.scss";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import ErrorBoundary from "./ErrorHandling/ErrorBoundary";
 import routes from "./routes";
 
-const loading = () => (
-  <div className="animated fadeIn pt-3 text-center">Loading...</div>
-);
+const loading = () => <div className="pt-3 text-center">Loading...</div>;
 
 // Containers
 const DefaultLayout = React.lazy(() => import("./containers/DefaultLayout"));
