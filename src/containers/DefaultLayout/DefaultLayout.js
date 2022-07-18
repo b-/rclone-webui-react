@@ -5,12 +5,16 @@ import { getVersion } from "../../actions/versionActions";
 import { connect } from "react-redux";
 import { AUTH_KEY, LOGIN_TOKEN } from "../../utils/Constants";
 import { signOut } from "../../actions/userActions";
+import logo from "../../assets/img/brand/logo.svg";
 
-const MenuLink = tw(Link)`block p-2`;
+const MenuLink = tw(
+  Link
+)`flex items-center px-4 py-5 text-black font-medium no-underline`;
 
 function DefaultLayout() {
   const navigate = useNavigate();
 
+  // @todo: something to do with authentication, could be extracted to a custom hook
   useEffect(() => {
     if (
       !localStorage.getItem(AUTH_KEY) ||
@@ -24,7 +28,7 @@ function DefaultLayout() {
 
   return (
     <div className="app" data-test="defaultLayout">
-      <div className="flex justify-between bg-black text-white text-sm font-medium">
+      <div className="flex px-10 justify-between bg-black text-white text-sm font-medium">
         <div className="flex gap-1">
           <div className="flex items-center gap-1 p-1 mb-0">
             <div className="w-2 h-2 bg-green-400 rounded-full" />
@@ -48,30 +52,40 @@ function DefaultLayout() {
         </div>
       </div>
 
-      <div className="flex gap-10">
-        <Link to="/">RCLONE</Link>
-        <ul className="flex gap-4">
-          <li>
-            <MenuLink to="/remoteExplorer">Explorer</MenuLink>
-          </li>
-          <li>
-            <MenuLink to="/rcloneBackend">Backend</MenuLink>
-          </li>
-          <li>
-            <MenuLink to="/mountDashboard">Mounts</MenuLink>
-          </li>
-          <li>
-            <MenuLink to="/mountDashboard" onClick={(e) => signOut(e)}>
-              Mounts
-            </MenuLink>
-          </li>
-        </ul>
+      <div className="flex gap-4 px-10 border-b border-black border-opacity-10">
+        <Link to="/" className="flex items-center py-5">
+          <img src={logo} alt="RCLONE" />
+        </Link>
+
+        <div className="flex justify-between grow">
+          <ul className="flex">
+            <li>
+              <MenuLink to="/remoteExplorer" className="font-bold">
+                Explorer
+              </MenuLink>
+            </li>
+            <li>
+              <MenuLink to="/rcloneBackend">Backend</MenuLink>
+            </li>
+            <li>
+              <MenuLink to="/mountDashboard">Mounts</MenuLink>
+            </li>
+            <li></li>
+          </ul>
+
+          <MenuLink
+            className="pr-0"
+            $as="button"
+            type="button"
+            onClick={(e) => signOut(e)}
+          >
+            Log out
+          </MenuLink>
+        </div>
       </div>
-      <div>
-        <main>
-          <Outlet />
-        </main>
-      </div>
+      <main className="py-12">
+        <Outlet />
+      </main>
     </div>
   );
 }
