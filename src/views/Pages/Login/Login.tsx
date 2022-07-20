@@ -11,7 +11,7 @@ import {
 } from "../../../actions/userActions";
 import axiosInstance from "../../../utils/API/API";
 import urls from "../../../utils/API/endpoint";
-import logo from "../../../assets/img/brand/logo_symbol.png";
+import logo from "../../../assets/img/brand/logo.svg";
 import { LOGIN_TOKEN } from "../../../utils/Constants";
 
 const Label = tw.label`block font-bold`;
@@ -24,6 +24,7 @@ function Login() {
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
+  //@todo: what does this do
   useEffect(() => {
     setHostname(window.location.href.split("#/")[0]);
 
@@ -80,7 +81,7 @@ function Login() {
     <div className="flex" data-test="loginComponent">
       <div className="mx-auto">
         <div className="flex justify-center pt-20 mb-10">
-          <img src={logo} alt="rclone" />
+          <img src={logo} alt="rclone" className="w-40" />
         </div>
 
         <form onSubmit={onSubmit} className="border w-96 p-10">
