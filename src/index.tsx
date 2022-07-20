@@ -2,6 +2,7 @@ import * as React from "react";
 import { createRoot } from "react-dom/client";
 import "./index.css";
 import App from "./App";
+import "@fontsource/inter/variable.css"; // Contains ONLY variable weights and no other axes.
 import * as serviceWorker from "./serviceWorker";
 import { Provider } from "react-redux";
 import store from "./store";
