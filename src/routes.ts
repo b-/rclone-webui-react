@@ -3,7 +3,10 @@ import React from "react";
 const MyDashboard = React.lazy(
   () => import("./views/RemoteManagement/NewDrive")
 );
-const Home = React.lazy(() => import("./views/Home"));
+const Home = React.lazy(() =>
+  import("./views/Home").then(({ Home }) => ({ default: Home }))
+);
+
 const ShowConfig = React.lazy(
   () => import("./views/RemoteManagement/ShowConfig/ShowConfig")
 );
