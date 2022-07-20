@@ -21,7 +21,6 @@ function AudioPlayer({ playbackURL, MimeType }) {
         data-test="audioPlayerWidget"
       >
         <Button color="link" onClick={hideFull}>
-          {/*<i className="fa fa-play-circle fa-4x"/>*/}
           <audio controls>
             <source src={playbackURL} type={MimeType} />
             Your browser does not support the audio tag.

@@ -102,7 +102,7 @@ const FileUploadModal = (props) => {
         id="UploadButton"
         onClick={toggle}
       >
-        <i className="fa fa-lg fa-upload" />
+        upload
       </Button>
       <UncontrolledTooltip placement="right" target="UploadButton">
         Upload file(s)
@@ -131,7 +131,7 @@ const FileUploadModal = (props) => {
                     <Col sm={6}>
                       <label htmlFor="upload-file">
                         <Row>
-                          <i className="fa fa-lg fa-plus mx-auto mt-5" />
+                          plus
                           <p className="text-center mt-2">
                             Click here or drag and drop files to upload
                           </p>

@@ -24,11 +24,7 @@ const getSuggestions = (config, value) => {
 const getSuggestionValue = (suggestion) => suggestion;
 
 // Use your imagination to render suggestions.
-const renderSuggestion = (suggestion) => (
-  <div>
-    <i className="fa fa-lg fa-hdd-o" /> {suggestion}
-  </div>
-);
+const renderSuggestion = (suggestion) => <div>hdd {suggestion}</div>;
 
 class RemoteListAutoSuggest extends React.Component {
   constructor(props) {

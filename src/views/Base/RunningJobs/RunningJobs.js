@@ -252,7 +252,7 @@ function JobGroup({ job, groupId }) {
                       onClick={(e) => stopJob(e, groupId)}
                       className={"btn-outline-danger btn-pill"}
                     >
-                      <i className="fa fa-close fa-sm" />
+                      close
                     </Button>
                   </Col>
                 </Row>
@@ -332,9 +332,7 @@ class RunningJobs extends React.Component {
             <CardHeader onClick={() => this.toggleShowing()}>
               Progress
               <div className="card-header-actions">
-                <Button color="link">
-                  <i className="fa fa-close fa-lg" />
-                </Button>
+                <Button color="link">close</Button>
               </div>
             </CardHeader>
             <CardBody

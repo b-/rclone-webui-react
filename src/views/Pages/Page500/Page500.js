@@ -24,9 +24,7 @@ function Page500() {
             </span>
             <InputGroup className="input-prepend">
               <InputGroupAddon addonType="prepend">
-                <InputGroupText>
-                  <i className="fa fa-search"></i>
-                </InputGroupText>
+                <InputGroupText>search</InputGroupText>
               </InputGroupAddon>
               <input type="text" placeholder="What are you looking for?" />
               <InputGroupAddon addonType="append">

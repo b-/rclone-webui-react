@@ -137,7 +137,6 @@ class NewFolder extends React.Component {
                 className="float-right"
                 disabled={disableForm}
               >
-                <i className="fa fa-check fa-lg" />
                 Create folder
               </Button>
             </div>

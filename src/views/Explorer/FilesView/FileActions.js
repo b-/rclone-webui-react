@@ -31,31 +31,27 @@ function FileActions({ downloadHandle, deleteHandle, item, linkShareHandle }) {
           onClick={() => downloadHandle(item)}
           data-test="btn-download"
         >
-          <i className={"fa fa-cloud-download fa-lg d-inline"} />
+          download
         </Button>
       )}
-      <Button color="link">
-        <i className="fa fa-info-circle" />
-      </Button>
+      <Button color="link">info</Button>
 
       <UncontrolledButtonDropdown>
-        <DropdownToggle color="link">
-          <i className="fa fa-ellipsis-v" />
-        </DropdownToggle>
+        <DropdownToggle color="link">menu</DropdownToggle>
         <DropdownMenu>
           <DropdownItem header>Actions</DropdownItem>
           <DropdownItem
             data-test="btn-share-with-link"
             onClick={() => linkShareHandle(item)}
           >
-            <i className="fa fa-share fa-lg d-inline" /> Share with link
+            Share with link
           </DropdownItem>
           <DropdownItem divider />
           <DropdownItem
             data-test="btn-delete-item"
             onClick={() => confirmDelete(deleteHandle, item)}
           >
-            <i className="fa fa-remove fa-lg d-inline text-danger" /> Delete{" "}
+            Delete
           </DropdownItem>
         </DropdownMenu>
       </UncontrolledButtonDropdown>

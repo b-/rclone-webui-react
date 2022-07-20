@@ -34,7 +34,7 @@ function TabsLayout(props) {
                 className={"float-center"}
                 onClick={() => changeActiveRemoteContainer(ID, paneID)}
               >
-                <i className="fa fa-folder-o pr-1" />
+                Folder
                 <span className="overflow-hidden">
                   {currentPaths[ID] && currentPaths[ID].remoteName !== ""
                     ? currentPaths[ID].remoteName
@@ -47,7 +47,7 @@ function TabsLayout(props) {
                     removeRemoteContainer(ID, paneID);
                   }}
                 >
-                  <i className="fa fa-lg fa-close" />
+                  Close
                 </Button>
               </NavLink>
             </NavItem>
@@ -60,7 +60,7 @@ function TabsLayout(props) {
           className={"float-center"}
           onClick={() => addRemoteContainer(currentPaneID)}
         >
-          <i className="fa fa-lg fa-plus" />
+          plus
         </NavLink>
       </NavItem>
     </Nav>

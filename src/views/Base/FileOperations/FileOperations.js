@@ -235,30 +235,27 @@ class FileOperations extends React.Component {
         style={{ marginLeft: "-15px", marginRight: "-15px" }}
       >
         <div className="d-flex flex-nowrap">
-          <Button
+          <button
             color="light"
             className="mr-1 btn-explorer-action"
             onClick={() => navigateBack(containerID)}
           >
-            <i className={"fa fa-lg fa-arrow-left"} />
-          </Button>
-          <Button
+            Arrow left
+          </button>
+          <button
             color="light"
             className={"mr-1 btn-explorer-action"}
             onClick={() => navigateFwd(containerID)}
           >
-            <i className={"fa fa-lg fa-arrow-right"} />
-          </Button>
-          <Button
+            Arrow right
+          </button>
+          <button
             className="mr-1 btn-explorer-action"
             id="RefreshButton"
             onClick={() => getFilesForContainerID(containerID)}
           >
-            <i className={"fa fa-lg fa-repeat"} />
-          </Button>
-          <UncontrolledTooltip placement="right" target="RefreshButton">
-            Refresh Files
-          </UncontrolledTooltip>
+            Reload
+          </button>
         </div>
         <div className="flex-grow-1 pl-1 pr-1 pr-lg-3 pl-lg-3">
           <Form inline onSubmit={this.onSubmitUrlChange} className="h-100">
@@ -269,29 +266,28 @@ class FileOperations extends React.Component {
               onFocus={this.onFocusHandle}
               onBlur={this.onBlurHandle}
             />
-            <Button
+            <button
               className={isUrlBarFocused ? "" : "d-none"}
               color="link"
               type={"submit"}
               style={{ marginLeft: "-45px" }}
             >
-              <i className="fa fa-arrow-right" />
-            </Button>
+              arrow right
+            </button>
           </Form>
         </div>
         <div className="d-flex flex-wrap">
-          {/*<Button className="p-0 float-right" color="link"><i className="fa fa-info-circle"/></Button>*/}
+          <Button className="p-0 float-right" color="link">
+            circle
+          </Button>
 
           <Button
             className="mr-1 btn-explorer-action p-1"
             id="CreateFolderButton"
             onClick={this.openNewFolderModal}
           >
-            <img src={newFolderImg} alt="New Folder" className="fa fa-lg" />{" "}
+            new folder
           </Button>
-          <UncontrolledTooltip placement="bottom" target="CreateFolderButton">
-            Create a new Folder
-          </UncontrolledTooltip>
 
           <ButtonDropdown
             isOpen={dropdownOpen}
@@ -300,7 +296,7 @@ class FileOperations extends React.Component {
             id="FilterButton"
           >
             <DropdownToggle className="btn-explorer-action">
-              <i className={"fa fa-lg fa-filter"} />
+              filter
             </DropdownToggle>
             <DropdownMenu>
               <DropdownItem
@@ -329,26 +325,16 @@ class FileOperations extends React.Component {
             id="ListViewButton"
             onClick={this.handleChangeGridMode}
           >
-            <i
-              className={
-                "fa fa-lg " + (gridMode === "card" ? "fa-list" : "fa-th-large")
-              }
-            />
+            list view mode
           </Button>
-          <UncontrolledTooltip placement="right" target="ListViewButton">
-            {gridMode === "card" ? "List View" : "Card View"}
-          </UncontrolledTooltip>
 
           <Button
             className="btn-explorer-action"
             id="InfoButton"
             onClick={this.toggleAboutModal}
           >
-            <i className="fa fa-lg fa-info" />
+            remote info
           </Button>
-          <UncontrolledTooltip placement="right" target="InfoButton">
-            Show Remote Info
-          </UncontrolledTooltip>
           <FileUploadModal
             currentPath={currentPath}
             buttonLabel={"Upload"}
@@ -370,11 +356,7 @@ class FileOperations extends React.Component {
                 className="mr-1 btn-explorer-action"
                 onClick={this.handleSearchOpen}
               >
-                <i
-                  className={
-                    "fa fa-lg " + (searchOpen ? "fa-close" : "fa-search")
-                  }
-                />
+                Search / close
               </Button>
             </FormGroup>
           </Form>
@@ -406,7 +388,7 @@ class FileOperations extends React.Component {
               <Row>
                 <Col sm={12}>
                   <Button color="danger" onClick={this.handleCleanTrash}>
-                    Clean Trash <i className="fa fa-lg fa-trash" />
+                    Clean Trash
                   </Button>
                 </Col>
               </Row>

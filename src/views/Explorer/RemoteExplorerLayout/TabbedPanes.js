@@ -1,4 +1,3 @@
-import { Col, Row } from "reactstrap";
 import TabsLayout from "../TabsLayout/TabsLayout";
 import RemoteExplorer from "../RemoteExplorer";
 import React from "react";
@@ -11,15 +10,12 @@ const TabbedPanes = ({
   containers,
 }) => {
   let returnData = [];
-  const lgSize = 12 / numCols;
   for (let pane = 0; pane < numCols; pane++) {
     returnData.push(
-      <Col lg={lgSize} key={pane}>
-        <Row>
-          <Col lg={12}>
-            <TabsLayout paneID={pane} />
-          </Col>
-        </Row>
+      <div>
+        <div id="here">
+          <TabsLayout paneID={pane} />
+        </div>
         {containers.map(({ ID, paneID }) => {
           if (paneID === pane) {
             return (
@@ -40,7 +36,7 @@ const TabbedPanes = ({
             return null;
           }
         })}
-      </Col>
+      </div>
     );
   }
   return returnData;

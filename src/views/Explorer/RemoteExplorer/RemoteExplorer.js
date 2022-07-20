@@ -18,7 +18,6 @@ import {
   PROP_CURRENT_PATH,
   PROP_FS_INFO,
 } from "../../../utils/RclonePropTypes";
-import ErrorBoundary from "../../../ErrorHandling/ErrorBoundary";
 import RemotesList from "../RemotesList";
 import { getFsInfo } from "../../../actions/explorerActions";
 
@@ -70,26 +69,20 @@ class RemoteExplorer extends React.Component {
     const isValidPath = remoteName && remoteName !== "";
 
     return (
-      <ErrorBoundary>
-        <Card className={className}>
-          <CardBody>
-            <Container fluid={true}>
-              {isValidPath ? (
-                <>
-                  <FileOperations containerID={containerID} />
-                  <FilesView containerID={containerID} />
-                </>
-              ) : (
-                <RemotesList
-                  remoteName={remoteName}
-                  containerID={containerID}
-                  handleChangeRemoteName={this.handleChangeRemoteName}
-                />
-              )}
-            </Container>
-          </CardBody>
-        </Card>
-      </ErrorBoundary>
+      <div>
+        {isValidPath ? (
+          <>
+            <FileOperations containerID={containerID} />
+            <FilesView containerID={containerID} />
+          </>
+        ) : (
+          <RemotesList
+            remoteName={remoteName}
+            containerID={containerID}
+            handleChangeRemoteName={this.handleChangeRemoteName}
+          />
+        )}
+      </div>
     );
   }
 }

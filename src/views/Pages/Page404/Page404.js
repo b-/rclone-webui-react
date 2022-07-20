@@ -26,9 +26,7 @@ class Page404 extends Component {
               </div>
               <InputGroup className="input-prepend">
                 <InputGroupAddon addonType="prepend">
-                  <InputGroupText>
-                    <i className="fa fa-search"></i>
-                  </InputGroupText>
+                  <InputGroupText>search</InputGroupText>
                 </InputGroupAddon>
                 <Input
                   size="16"

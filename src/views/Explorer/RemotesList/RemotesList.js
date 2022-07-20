@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { getFsInfo, getRemoteNames } from "../../../actions/explorerActions";
 import PropTypes from "prop-types";
 import { changeRemoteName } from "../../../actions/explorerStateActions";
-import { Button, Col, Form } from "reactstrap";
+import { Form } from "reactstrap";
 import { PROP_CURRENT_PATH } from "../../../utils/RclonePropTypes";
 
 class RemotesList extends React.Component {
@@ -64,19 +64,22 @@ class RemotesList extends React.Component {
       );
     } else {
       return (
-        <Form onSubmit={this.openRemote} className="row">
-          <Col xs={12} sm={10} lg={10}>
+        <Form onSubmit={this.openRemote}>
+          <div>
             <RemoteListAutoSuggest
               value={remoteName}
               onChange={this.shouldUpdateRemoteName}
               suggestions={remotes}
             />
-          </Col>
-          <Col xs={12} sm={2} lg={2}>
-            <Button className={"btn-lg"} color="success">
+          </div>
+          <div>
+            <button
+              type="submit"
+              className={"px-2 py-1 bg-black text-white font-bold uppercase"}
+            >
               {this.state.openButtonText}
-            </Button>
-          </Col>
+            </button>
+          </div>
         </Form>
       );
     }

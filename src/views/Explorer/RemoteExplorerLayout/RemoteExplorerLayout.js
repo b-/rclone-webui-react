@@ -64,71 +64,67 @@ class RemoteExplorerLayout extends React.Component {
                   className={"ml-2"}
                   onClick={this.toggleDistractionFreeMode}
                 >
-                  <i className="fa fa-arrows" />
+                  distraction free mode
                 </Button>
               </div>
             )}
 
             {!distractionFreeMode && (
               <Col sm={12} lg={12} className="mb-3 d-none d-md-block">
-                <span className="text-choose-layout">
-                  Choose Layout: {"  "}
-                </span>
-
                 <Button
                   color={"primary"}
                   className={"ml-2 layout-change-button"}
                   onClick={() => this.changeLayout(1, "horizontal")}
                 >
-                  <img
-                    style={{ height: 24 }}
-                    src={singlePaneImg}
-                    alt="Single Vertical Pane"
-                  />
+                  <div className="flex p-1 gap-1 w-9 h-5 bg-gray-400">
+                    <div className="w-2.5 bg-white"></div>
+                  </div>
+                  <span className="sr-only">Single Vertical Pane</span>
                 </Button>
                 <Button
                   color={"primary"}
                   className={"ml-2 layout-change-button"}
                   onClick={() => this.changeLayout(2, "horizontal")}
                 >
-                  <img
-                    style={{ height: 24 }}
-                    src={doublePaneImg}
-                    alt="Double Vertical Pane"
-                  />
+                  <div className="flex p-1 gap-1 w-9 h-5 bg-gray-400">
+                    <div className="w-3 bg-white"></div>
+                    <div className="w-3 bg-white"></div>
+                  </div>
+                  <span className="sr-only">Double Vertical Pane</span>
                 </Button>
                 <Button
                   color={"primary"}
                   className={"ml-2 layout-change-button"}
                   onClick={() => this.changeLayout(3, "horizontal")}
                 >
-                  <img
-                    style={{ height: 24 }}
-                    src={triplePaneImg}
-                    alt="Triple Vertical Pane"
-                  />
+                  <div className="flex p-1 gap-1 w-9 h-5 bg-gray-400">
+                    <div className="w-2 bg-white"></div>
+                    <div className="w-2 bg-white"></div>
+                    <div className="w-2 bg-white"></div>
+                  </div>
+                  <span className="sr-only">Triple Vertical Pane</span>
                 </Button>
 
                 <Button
                   color={"success"}
-                  className={"ml-2"}
+                  className={"bg-gray-100 ml-2"}
                   onClick={this.toggleDistractionFreeMode}
                 >
-                  <i className="fa fa-arrows" /> Full Screen
+                  Full Screen
                 </Button>
                 {/*<Button onClick={this.changeLayout(4,"grid")}>4 - grid</Button>*/}
               </Col>
             )}
           </Row>
 
-          <Row>
+          <div className="flex">
             <TabbedPanes
               numCols={numCols}
               distractionFreeMode={distractionFreeMode}
               activeRemoteContainerID={activeRemoteContainerID}
               containers={containers}
             />
-          </Row>
+          </div>
         </DndProvider>
       </ErrorBoundary>
     );

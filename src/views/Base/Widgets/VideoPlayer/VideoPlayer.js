@@ -58,7 +58,7 @@ function VideoPlayer({ playbackURL, MimeType }) {
         data-test="videoPlayerWidget"
       >
         <Button color="link" onClick={hideFull}>
-          <i className="fa fa-play-circle fa-4x" />
+          play
           {/*<ReactPlayer url={playbackURL} light={true} controls={true}/>*/}
         </Button>
       </div>

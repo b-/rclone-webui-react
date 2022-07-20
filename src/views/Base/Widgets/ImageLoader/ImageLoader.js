@@ -97,11 +97,11 @@ function ImageLoader({
                 <CardBody>
                   <Row>
                     <Button color="link" onClick={rotateLeft}>
-                      <i className="fa fa-rotate-left" />
+                      rotate left
                     </Button>
 
                     <Button color="link" onClick={rotateRight}>
-                      <i className="fa fa-rotate-right" />
+                      rotate right
                     </Button>
                   </Row>
                 </CardBody>

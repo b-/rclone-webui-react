@@ -56,7 +56,7 @@ class LinkShareModal extends React.Component {
               isCopyAllowed && (
                 <div>
                   <Button color="link" onClick={this.copyToClipboard}>
-                    <i className="fa fa-clipboard fa-2x" />
+                    copy
                   </Button>
                 </div>
               )
