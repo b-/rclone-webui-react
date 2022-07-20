@@ -15,7 +15,6 @@ import {
   ModalHeader,
   Row,
   Spinner,
-  UncontrolledTooltip,
 } from "reactstrap";
 import NewFolder from "../NewFolder/NewFolder";
 import PropTypes from "prop-types";
@@ -36,10 +35,9 @@ import { Doughnut } from "react-chartjs-2";
 import { bytesToGB, isEmpty } from "../../../utils/Tools";
 import { toast } from "react-toastify";
 import { PROP_FS_INFO } from "../../../utils/RclonePropTypes";
-import newFolderImg from "../../../assets/img/new-folder.png";
 import { cleanTrashForRemote } from "rclone-api";
 import { createSelector } from "reselect";
-import FileUploadModal from "./FileUploadModal"; // with import
+import FileUploadModal from "./FileUploadModal";
 
 function getUrl(currentPath) {
   const { remoteName, remotePath } = currentPath;

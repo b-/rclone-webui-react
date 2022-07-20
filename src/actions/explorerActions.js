@@ -163,15 +163,3 @@ export const changeActiveRemoteContainer =
       },
     });
   };
-
-/**
- * Enter or exit distraction free mode
- * @param shouldEnable  {boolean} Enable or disable distraction free mode.
- * @returns {Function}
- */
-export const changeDistractionFreeMode = (shouldEnable) => (dispatch) => {
-  dispatch({
-    type: CHANGE_DISTRACTION_FREE_MODE,
-    payload: shouldEnable,
-  });
-};
