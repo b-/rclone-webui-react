@@ -24,7 +24,7 @@ exports[`App Component should match snapshot 1`] = `
       <Suspense
         fallback={
           <div
-            className="animated fadeIn pt-3 text-center"
+            className="pt-3 text-center"
           >
             Loading...
           </div>
