@@ -132,7 +132,6 @@ function DefaultLayout() {
 }
 
 const mapStateToProps = (state) => ({
-  isConnected: state.status.isConnected,
   version: state.version,
 });
 

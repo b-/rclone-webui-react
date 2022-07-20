@@ -290,41 +290,33 @@ class RunningJobs extends React.Component {
   };
 
   render() {
-    const { jobs, isConnected, lineChartData } = this.props;
+    const { jobs, lineChartData } = this.props;
     const { transferring } = jobs;
     const { mode } = this.props;
     if (mode === "full-status") {
-      if (isConnected) {
-        return (
-          <Row>
-            <Col sm={12} lg={6}>
-              <GlobalStatus stats={jobs} />
-            </Col>
+      return (
+        <Row>
+          <Col sm={12} lg={6}>
+            <GlobalStatus stats={jobs} />
+          </Col>
 
-            <Col sm={12} lg={6}>
-              <Card>
-                <CardHeader>Speed</CardHeader>
-                <CardBody>
-                  <div className="chart-wrapper">
-                    <Line data={lineChartData} options={options} />
-                  </div>
-                </CardBody>
-              </Card>
-            </Col>
-            <Col sm={12} lg={4}>
-              <TransferringJobs transferring={transferring} />
-            </Col>
-          </Row>
-        );
-      } else {
-        return <div>Not connected to rclone.</div>;
-      }
+          <Col sm={12} lg={6}>
+            <Card>
+              <CardHeader>Speed</CardHeader>
+              <CardBody>
+                <div className="chart-wrapper">
+                  <Line data={lineChartData} options={options} />
+                </div>
+              </CardBody>
+            </Card>
+          </Col>
+          <Col sm={12} lg={4}>
+            <TransferringJobs transferring={transferring} />
+          </Col>
+        </Row>
+      );
     } else if (mode === "card") {
-      if (isConnected) {
-        return <TransferringJobsRow transferring={transferring} />;
-      } else {
-        return <div>Not connected to rclone.</div>;
-      }
+      return <TransferringJobsRow transferring={transferring} />;
     } else if (mode === "modal") {
       if (transferring && transferring.length > 0)
         return (
@@ -352,13 +344,12 @@ class RunningJobs extends React.Component {
 
 RunningJobs.propTypes = {
   mode: PropTypes.string.isRequired,
-  isConnected: PropTypes.bool.isRequired,
   jobs: PropTypes.object.isRequired,
   error: PropTypes.object,
 };
 
 const mapStateToProps = (state, ownProps) => {
-  const speedData = state.status.speed;
+  const speedData = false;
   let lineChartData = {};
   if (speedData) {
     let labels = [];
@@ -424,9 +415,6 @@ const mapStateToProps = (state, ownProps) => {
   }
 
   return {
-    jobs: state.status.jobs,
-    isConnected: state.status.isConnected,
-    error: state.status.error,
     lineChartData,
   };
 };

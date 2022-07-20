@@ -1,6 +1,5 @@
 import { combineReducers } from "redux";
 
-import statusReducer from "./statusReducer";
 import configReducer from "./configReducer";
 import explorerReducer from "./explorerReducer";
 import explorerState from "./explorerStateReducer";
@@ -32,7 +31,6 @@ const rootReducer = (state, action) => {
  * @type {Reducer<any>}
  */
 const appReducer = combineReducers({
-  status: statusReducer,
   config: configReducer,
   remote: explorerReducer,
   explorer: explorerState,
