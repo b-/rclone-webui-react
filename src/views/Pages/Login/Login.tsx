@@ -20,6 +20,7 @@ function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [hostname, setHostname] = useState("");
+  const [errorCode, setErrorCode] = useState({ stack: "" });
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
@@ -68,6 +69,7 @@ function Login() {
         },
         (error) => {
           console.log(error);
+          setErrorCode(error);
           setError(
             "Error connecting. Please check your username password and make sure rclone is working properly at the specified IP."
           );
@@ -85,10 +87,14 @@ function Login() {
 
         <form onSubmit={onSubmit} className="border w-96 p-10">
           {error && (
-            <div
-              className="bg-red-100 text-red-600 p-3 mb-3"
-              children={error}
-            />
+            <details className="bg-red-100 text-red-600 p-3 mb-3">
+              <>
+                <summary>{error}</summary>
+                <p className="pt-1 text-xs text-red-900 font-normal break-all">
+                  {errorCode && errorCode?.stack}
+                </p>
+              </>
+            </details>
           )}
           <div className="mb-3">
             <Label htmlFor="host">Host</Label>
