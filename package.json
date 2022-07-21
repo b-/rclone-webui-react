@@ -17,6 +17,7 @@
     "@coreui/icons": "0.3.0",
     "@coreui/react": "^4.3.0",
     "@fontsource/inter": "^4.5.11",
+    "@heroicons/react": "^1.0.6",
     "axios": "^0.21.1",
     "chart.js": "^2.9.3",
     "classnames": "^2.2.6",

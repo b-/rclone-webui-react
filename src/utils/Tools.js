@@ -142,6 +142,7 @@ export function baseValidator(regex, str) {
   return regex.test(str);
 }
 
+// todo: allow 1Gi, 1Mi, 1Ki ... etc
 /**
  * Validate Size Suffix of the format (off | 1K | 1M | 100G | 10P ) etc
  * @param str {string} String to be validated
