@@ -49,9 +49,6 @@ function DefaultLayout() {
         <div className="flex justify-between grow">
           <ul className="flex">
             <li>
-              <MenuLink to="/dashboard">Dashboard</MenuLink>
-            </li>
-            <li>
               <MenuLink
                 to="/remoteExplorer"
                 className={({ isActive }) =>
