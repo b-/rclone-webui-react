@@ -51,7 +51,7 @@ function Login() {
   const handleUsername = (e) => setUsername(e.target.value);
   const handlePassword = (e) => setPassword(e.target.value);
   const handleHostname = (e) => setHostname(e.target.value);
-  const redirectToDashboard = () => navigate("/dashboard");
+  const redirectToDashboard = () => navigate("/");
 
   const dispatch = useDispatch();
 
