@@ -76,7 +76,8 @@ class ProviderAutoSuggest extends React.Component {
 
     // Finally, render it!
     return (
-      <Autosuggest
+      <>
+        {/* <Autosuggest
         suggestions={this.state.suggestions}
         onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
         onSuggestionsClearRequested={this.onSuggestionsClearRequested}
@@ -85,7 +86,11 @@ class ProviderAutoSuggest extends React.Component {
         alwaysRenderSuggestions={true}
         highlightFirstSuggestion={true}
         inputProps={inputProps}
-      />
+      /> */}
+        <select>
+          <option name="" value=""></option>
+        </select>
+      </>
     );
   }
 }

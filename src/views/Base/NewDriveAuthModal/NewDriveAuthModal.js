@@ -30,8 +30,7 @@ class NewDriveAuthModal extends React.Component {
             <ModalFooter data-test="modalFooter">
               <Button color="primary" onClick={this.toggle}>
                 Done
-              </Button>{" "}
-              {/*<Button color="secondary" onClick={this.toggle}>Cancel</Button>*/}
+              </Button>
             </ModalFooter>
           </Modal>
         </ErrorBoundary>

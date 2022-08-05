@@ -66,7 +66,6 @@ class ConfigRow extends React.Component {
 const propTypes = {
   remote: PropTypes.object.isRequired, // Name of the remote to perform operations
   refreshHandle: PropTypes.func.isRequired, // Used to refresh the parent component upon change
-  sequenceNumber: PropTypes.number.isRequired,
   remoteName: PropTypes.string.isRequired,
 };
 

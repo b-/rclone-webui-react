@@ -1,9 +1,13 @@
 import React from "react";
+// const NewDrive = React.lazy(() =>
+//   import("./views/RemoteManagement/NewDrive/NewDrive").then(({ NewDrive }) => ({
+//     default: NewDrive,
+//   }))
+// );
 
-const MyDashboard = React.lazy(
-  () => import("./views/RemoteManagement/NewDrive")
+const NewDrive = React.lazy(
+  () => import("./views/RemoteManagement/NewDrive/NewDrive")
 );
-
 const ShowConfig = React.lazy(
   () => import("./views/RemoteManagement/ShowConfig/ShowConfig")
 );
@@ -20,13 +24,13 @@ const routes = [
   {
     path: "/newdrive/edit/:drivePrefix",
     name: "Edit Remote",
-    component: MyDashboard,
+    component: NewDrive,
   },
   {
     path: "/newdrive",
     exact: true,
     name: "New Remote",
-    component: MyDashboard,
+    component: NewDrive,
   },
   { path: "/login", exact: true, name: "Login Page", component: Login },
   { path: "/", name: "Configs", component: ShowConfig },

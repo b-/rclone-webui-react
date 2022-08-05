@@ -211,7 +211,7 @@ export function openInNewTab(url) {
  */
 
 export function findFromConfig(config, name) {
-  const currentConfig = config.find((ele, idx, array) => {
+  const currentConfig = config.find((ele) => {
     return name === ele.Prefix;
   });
   return currentConfig;
