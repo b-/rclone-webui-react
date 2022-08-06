@@ -17,11 +17,6 @@ function FileActions({ downloadHandle, deleteHandle, item, linkShareHandle }) {
   };
 
   const { IsDir } = item;
-  // let {ID, Name} = item;
-  // // Using fallback as fileName when the ID is not available (for local file system)
-  // if (ID === undefined) {
-  //     ID = Name;
-  // }
 
   return (
     <div data-test="fileActionsComponent">
@@ -36,10 +31,9 @@ function FileActions({ downloadHandle, deleteHandle, item, linkShareHandle }) {
       )}
       <Button color="link">info</Button>
 
-      <UncontrolledButtonDropdown>
+      <UncontrolledButtonDropdown className="hidden">
         <DropdownToggle color="link">menu</DropdownToggle>
         <DropdownMenu>
-          <DropdownItem header>Actions</DropdownItem>
           <DropdownItem
             data-test="btn-share-with-link"
             onClick={() => linkShareHandle(item)}
