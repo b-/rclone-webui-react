@@ -1,6 +1,5 @@
 import React from "react";
 import {
-  Button,
   ButtonDropdown,
   Col,
   DropdownItem,
@@ -11,7 +10,6 @@ import {
   Input,
   Modal,
   ModalBody,
-  ModalFooter,
   ModalHeader,
   Row,
   Spinner,
@@ -275,17 +273,13 @@ class FileOperations extends React.Component {
           </Form>
         </div>
         <div className="d-flex flex-wrap">
-          <Button className="p-0 float-right" color="link">
-            circle
-          </Button>
-
-          <Button
+          <button
             className="mr-1 btn-explorer-action p-1"
             id="CreateFolderButton"
             onClick={this.openNewFolderModal}
           >
             new folder
-          </Button>
+          </button>
 
           <ButtonDropdown
             isOpen={dropdownOpen}
@@ -318,21 +312,21 @@ class FileOperations extends React.Component {
             </DropdownMenu>
           </ButtonDropdown>
 
-          <Button
+          <button
             className="btn-explorer-action"
             id="ListViewButton"
             onClick={this.handleChangeGridMode}
           >
             list view mode
-          </Button>
+          </button>
 
-          <Button
+          <button
             className="btn-explorer-action"
             id="InfoButton"
             onClick={this.toggleAboutModal}
           >
             remote info
-          </Button>
+          </button>
           <FileUploadModal
             currentPath={currentPath}
             buttonLabel={"Upload"}
@@ -349,13 +343,13 @@ class FileOperations extends React.Component {
                   onChange={this.changeSearch}
                 />
               )}
-              <Button
+              <button
                 color=""
                 className="mr-1 btn-explorer-action"
                 onClick={this.handleSearchOpen}
               >
                 Search / close
-              </Button>
+              </button>
             </FormGroup>
           </Form>
 
@@ -385,13 +379,12 @@ class FileOperations extends React.Component {
               </Row>
               <Row>
                 <Col sm={12}>
-                  <Button color="danger" onClick={this.handleCleanTrash}>
+                  <button color="danger" onClick={this.handleCleanTrash}>
                     Clean Trash
-                  </Button>
+                  </button>
                 </Col>
               </Row>
             </ModalBody>
-            <ModalFooter></ModalFooter>
           </Modal>
         </div>
       </div>
