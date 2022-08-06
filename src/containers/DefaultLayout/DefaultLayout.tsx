@@ -49,46 +49,18 @@ function DefaultLayout() {
         <div className="flex justify-between grow">
           <ul className="flex">
             <li>
-              <MenuLink
-                to="/remoteExplorer"
-                className={({ isActive }) =>
-                  isActive ? "font-bold" : "font-normal"
-                }
-              >
-                Explorer
-              </MenuLink>
+              <MenuLink to="/remoteExplorer">Explorer</MenuLink>
             </li>
             <li>
-              <MenuLink
-                to="/backend"
-                className={({ isActive }) =>
-                  isActive ? "font-bold" : "font-normal"
-                }
-              >
-                Backend
-              </MenuLink>
+              <MenuLink to="/backend">Backend</MenuLink>
             </li>
             <li>
-              <MenuLink
-                to="/mountDashboard"
-                className={({ isActive }) =>
-                  isActive ? "font-bold" : "font-normal"
-                }
-              >
-                Mounts
-              </MenuLink>
+              <MenuLink to="/mountDashboard">Mounts</MenuLink>
             </li>
           </ul>
 
           <button
-            className={(isActive) =>
-              cn(
-                "flex items-center pl-4 py-5 text-black font-medium no-underline",
-                {
-                  "font-bold": isActive,
-                }
-              )
-            }
+            className="flex items-center pl-4 py-5 text-black font-medium no-underline"
             type="button"
             onClick={(e) => {
               localStorage.clear();
