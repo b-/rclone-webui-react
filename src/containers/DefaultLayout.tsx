@@ -10,8 +10,8 @@ import DefaultLayoutStatusbar from "./DefaultLayoutStatusbar";
 
 const MenuLink = ({ to, children }) => (
   <NavLink
-    className={(isActive) =>
-      cn("flex items-center px-4 py-5 text-black font-medium no-underline", {
+    className={({ isActive }) =>
+      cn("flex items-center px-4 py-5 text-black no-underline", {
         "font-bold": isActive,
       })
     }
@@ -47,6 +47,9 @@ function DefaultLayout() {
 
         <div className="flex justify-between grow">
           <ul className="flex">
+            <li>
+              <MenuLink to="/">Remotes</MenuLink>
+            </li>
             <li>
               <MenuLink to="/remoteExplorer">Explorer</MenuLink>
             </li>
