@@ -103,8 +103,7 @@
       "src/**/**/.{js,jsx}",
       "!**/node_modules/**",
       "!**/*index.js",
-      "!src/serviceWorker.js",
-      "!src/polyfill.js"
+      "!src/serviceWorker.js"
     ]
   }
 }
