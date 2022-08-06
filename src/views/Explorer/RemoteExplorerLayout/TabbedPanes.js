@@ -12,7 +12,7 @@ const TabbedPanes = ({
   let returnData = [];
   for (let pane = 0; pane < numCols; pane++) {
     returnData.push(
-      <div>
+      <div className="w-full">
         <div id="here">
           <TabsLayout paneID={pane} />
         </div>
