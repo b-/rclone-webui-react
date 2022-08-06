@@ -24,10 +24,6 @@ function App() {
             <Route path="/newdrive/edit/:drivePrefix" element={<NewDrive />} />
             <Route path="/newdrive" element={<NewDrive />} />
             <Route path="/login" element={<Login />} />
-            <Route
-              path="/remoteExplorer/:remoteName/:remotePath"
-              element={<RemoteExplorerLayout />}
-            />
             <Route path="/remoteExplorer" element={<RemoteExplorerLayout />} />
             <Route path="/backend" element={<Backend />}>
               <Route path=":config" element={<BackendConfig />} />
