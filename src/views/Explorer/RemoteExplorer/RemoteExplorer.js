@@ -69,7 +69,7 @@ class RemoteExplorer extends React.Component {
     const isValidPath = remoteName && remoteName !== "";
 
     return (
-      <div className="bg-red-200">
+      <div className="bg-gray-200">
         {isValidPath ? (
           <>
             <FileOperations containerID={containerID} />
