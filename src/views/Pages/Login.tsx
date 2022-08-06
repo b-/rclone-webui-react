@@ -7,11 +7,11 @@ import {
   changeIPAddress,
   changeUserNamePassword,
   signOut,
-} from "../../../actions/userActions";
-import axiosInstance from "../../../utils/API/API";
-import urls from "../../../utils/API/endpoint";
-import logo from "../../../assets/img/brand/logo.svg";
-import { LOGIN_TOKEN } from "../../../utils/Constants";
+} from "../../actions/userActions";
+import axiosInstance from "../../utils/API/API";
+import urls from "../../utils/API/endpoint";
+import logo from "../../assets/img/brand/logo.svg";
+import { LOGIN_TOKEN } from "../../utils/Constants";
 
 const Label = tw.label`block font-bold`;
 const Input = tw.input`py-1 px-2 border w-full`;
