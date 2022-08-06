@@ -4,7 +4,6 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import DefaultLayout from "./containers/DefaultLayout";
 import Login from "./views/Pages/Login/Login";
-import Register from "./views/Pages/Register";
 import Page404 from "./views/Pages/Page404";
 import Page500 from "./views/Pages/Page500";
 import NewDrive from "./views/RemoteManagement/NewDrive/NewDrive";
@@ -20,7 +19,6 @@ function App() {
       <HashRouter>
         <Routes>
           <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
           <Route path="/404" element={<Page404 />} />
           <Route path="/500" element={<Page500 />} />
           <Route element={<DefaultLayout />}>
