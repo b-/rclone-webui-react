@@ -62,7 +62,7 @@ function DefaultLayout() {
           </ul>
 
           <button
-            className="flex items-center pl-4 py-5 text-black font-medium no-underline"
+            className="flex items-center pl-4 py-5 text-red-600 font-medium no-underline"
             type="button"
             onClick={(e) => {
               localStorage.clear();
