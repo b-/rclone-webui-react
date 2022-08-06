@@ -38,7 +38,7 @@ function DefaultLayout() {
   }, []);
 
   return (
-    <div className="app" data-test="defaultLayout">
+    <div data-test="defaultLayout">
       <DefaultLayoutStatusbar />
 
       <div className="flex gap-4 px-10 border-b border-black border-opacity-10">
@@ -60,7 +60,7 @@ function DefaultLayout() {
             </li>
             <li>
               <MenuLink
-                to="/rcloneBackend"
+                to="/backend"
                 className={({ isActive }) =>
                   isActive ? "font-bold" : "font-normal"
                 }
@@ -100,7 +100,7 @@ function DefaultLayout() {
           </button>
         </div>
       </div>
-      <main className="py-12">
+      <main className="py-8">
         <Outlet />
       </main>
     </div>

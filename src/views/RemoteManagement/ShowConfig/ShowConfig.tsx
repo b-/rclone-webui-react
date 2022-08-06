@@ -29,7 +29,7 @@ function ShowConfig() {
 
   return (
     <div className="px-10" data-test="showConfigComponent">
-      <h1 className="text-3xl mb-8 font-black">Remotes</h1>
+      <h1 className="text-4xl mb-8 font-black">Remotes</h1>
       <button
         className="px-3 py-2 bg-black text-white mb-5 rounded-md"
         onClick={() => navigate("/newdrive")}

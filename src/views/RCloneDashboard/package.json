@@ -1,6 +1,0 @@
-{
-  "name": "Rclone Dashboard",
-  "version": "0.0.0",
-  "private": true,
-  "main": "RCloneDashboard.js"
-}

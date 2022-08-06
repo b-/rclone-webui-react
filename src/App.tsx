@@ -7,7 +7,8 @@ import { Login, Page404 } from "./views/Pages";
 import NewDrive from "./views/RemoteManagement/NewDrive/NewDrive";
 import ShowConfig from "./views/RemoteManagement/ShowConfig/ShowConfig";
 import RemoteExplorerLayout from "./views/Explorer/RemoteExplorerLayout";
-import RCloneDashboard from "./views/RCloneDashboard";
+import Backend from "./views/Backend";
+import BackendConfig from "./views/BackendConfig";
 import MountDashboard from "./views/MountDashboard";
 
 function App() {
@@ -28,7 +29,9 @@ function App() {
               element={<RemoteExplorerLayout />}
             />
             <Route path="/remoteExplorer" element={<RemoteExplorerLayout />} />
-            <Route path="/rcloneBackend" element={<RCloneDashboard />} />
+            <Route path="/backend" element={<Backend />}>
+              <Route path=":config" element={<BackendConfig />} />
+            </Route>
             <Route path="/mountDashboard" element={<MountDashboard />} />
           </Route>
         </Routes>
