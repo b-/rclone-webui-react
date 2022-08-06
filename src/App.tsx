@@ -5,7 +5,6 @@ import "react-toastify/dist/ReactToastify.css";
 import DefaultLayout from "./containers/DefaultLayout";
 import Login from "./views/Pages/Login/Login";
 import Page404 from "./views/Pages/Page404";
-import Page500 from "./views/Pages/Page500";
 import NewDrive from "./views/RemoteManagement/NewDrive/NewDrive";
 import ShowConfig from "./views/RemoteManagement/ShowConfig/ShowConfig";
 import RemoteExplorerLayout from "./views/Explorer/RemoteExplorerLayout";
@@ -20,7 +19,6 @@ function App() {
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route path="/*" element={<Page404 />} />
-          <Route path="/500" element={<Page500 />} />
           <Route element={<DefaultLayout />}>
             <Route path="/" element={<ShowConfig />} />
             <Route path="/newdrive/edit/:drivePrefix" element={<NewDrive />} />

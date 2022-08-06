@@ -1,3 +1,3 @@
-import { Login, Page404, Page500 } from "./Pages";
+import { Login, Page404 } from "./Pages";
 
-export { Page404, Page500, Login };
+export { Page404, Login };
