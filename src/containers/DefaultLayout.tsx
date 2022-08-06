@@ -1,11 +1,10 @@
 import React, { useEffect } from "react";
-import tw from "tailwind-styled-components";
 import { Outlet, Link, NavLink, useNavigate } from "react-router-dom";
-import { getVersion } from "../../actions/versionActions";
+import { getVersion } from "../actions/versionActions";
 import { connect } from "react-redux";
-import { AUTH_KEY, LOGIN_TOKEN } from "../../utils/Constants";
-import { signOut } from "../../actions/userActions";
-import logo from "../../assets/img/brand/logo.svg";
+import { AUTH_KEY, LOGIN_TOKEN } from "../utils/Constants";
+import { signOut } from "../actions/userActions";
+import logo from "../assets/img/brand/logo.svg";
 import cn from "classnames";
 import DefaultLayoutStatusbar from "./DefaultLayoutStatusbar";
 

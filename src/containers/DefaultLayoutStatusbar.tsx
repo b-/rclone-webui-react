@@ -1,11 +1,10 @@
 import React, { useEffect } from "react";
-import tw from "tailwind-styled-components";
-import { getVersion } from "../../actions/versionActions";
+import { getVersion } from "../actions/versionActions";
 import { getStats } from "rclone-api";
 import { connect } from "react-redux";
-import { IP_ADDRESS_KEY, STATUS_REFRESH_TIMEOUT } from "../../utils/Constants";
+import { IP_ADDRESS_KEY, STATUS_REFRESH_TIMEOUT } from "../utils/Constants";
 import { ExclamationIcon } from "@heroicons/react/solid";
-import { validateSizeSuffix } from "../../utils/Tools";
+import { validateSizeSuffix } from "../utils/Tools";
 import { toast } from "react-toastify";
 import {
   getCurrentBandwidthSetting,
@@ -13,18 +12,18 @@ import {
 } from "rclone-api";
 
 function DefaultLayout() {
-  const inputRef = React.useRef();
+  const inputRef = React.useRef<HTMLInputElement>(null);
   const [bandwidth, setBandwidth] = React.useState();
   const [backendStatus, setBackendStatus] = React.useState();
-  const [ipAddress, setIpAddress] = React.useState();
+  const [ipAddress, setIpAddress] = React.useState("");
 
   const getStatus = () => {
     getStats().then((res) => setBackendStatus(res));
   };
 
   useEffect(() => {
-    getCurrentBandwidthSetting().then((res) => setBandwidth(res));
-    setIpAddress(localStorage.getItem(IP_ADDRESS_KEY));
+    getCurrentBandwidthSetting().then((res) => setBandwidth(res.rate));
+    setIpAddress(localStorage.getItem(IP_ADDRESS_KEY) || "");
 
     getStatus();
 
@@ -45,9 +44,9 @@ function DefaultLayout() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (!isValid(inputRef.current.value)) {
+    if (!inputRef.current?.value || !isValid(inputRef.current.value)) {
       toast.error("Please check the errors before submitting");
-      return false;
+      return;
     }
 
     if (inputRef.current.value) {
@@ -104,7 +103,7 @@ function DefaultLayout() {
                   className="placeholder:text-gray-100 px-1 h-full font-mono bg-gray-700 outline-none"
                   placeholder="Set bandwidth limit"
                   type="text"
-                  defaultValue={bandwidth?.rate}
+                  defaultValue={bandwidth}
                   id="bandwidthValue"
                   title="The bandwidth should be of the form 1M|2M|1G|1K|1.1K etc. Can also be specified as (upload:download). Make empty to reset."
                 />
