@@ -226,167 +226,138 @@ class FileOperations extends React.Component {
     const { remoteName } = currentPath;
 
     return (
-      <div
-        className="pl-0 mt-3 mb-1 d-flex justify-content-between align-items-center"
-        style={{ marginLeft: "-15px", marginRight: "-15px" }}
-      >
-        <div className="d-flex flex-nowrap">
-          <button
-            color="light"
-            className="mr-1 btn-explorer-action"
-            onClick={() => navigateBack(containerID)}
-          >
-            Arrow left
+      <div className="flex gap-3 pt-4">
+        <button onClick={() => navigateBack(containerID)}>Back</button>
+        <button onClick={() => navigateFwd(containerID)}>Forward</button>
+        <button
+          id="RefreshButton"
+          onClick={() => getFilesForContainerID(containerID)}
+        >
+          Reload
+        </button>
+        <form
+          className="flex flex-grow h-full"
+          onSubmit={this.onSubmitUrlChange}
+        >
+          <input
+            className="w-full rounded-xl px-3"
+            value={tempUrl}
+            onChange={this.onChangeTrial}
+            onFocus={this.onFocusHandle}
+            onBlur={this.onBlurHandle}
+          />
+          <button className={isUrlBarFocused ? "" : "hidden"} type={"submit"}>
+            GO
           </button>
-          <button
-            color="light"
-            className={"mr-1 btn-explorer-action"}
-            onClick={() => navigateFwd(containerID)}
-          >
-            Arrow right
-          </button>
-          <button
-            className="mr-1 btn-explorer-action"
-            id="RefreshButton"
-            onClick={() => getFilesForContainerID(containerID)}
-          >
-            Reload
-          </button>
-        </div>
-        <div className="flex-grow-1 pl-1 pr-1 pr-lg-3 pl-lg-3">
-          <Form inline onSubmit={this.onSubmitUrlChange} className="h-100">
-            <Input
-              style={{ width: "100%" }}
-              value={tempUrl}
-              onChange={this.onChangeTrial}
-              onFocus={this.onFocusHandle}
-              onBlur={this.onBlurHandle}
-            />
-            <button
-              className={isUrlBarFocused ? "" : "d-none"}
-              color="link"
-              type={"submit"}
-              style={{ marginLeft: "-45px" }}
+        </form>
+        <button onClick={this.openNewFolderModal}>New folder</button>
+
+        <ButtonDropdown
+          className="hidden"
+          isOpen={dropdownOpen}
+          toggle={this.toggleDropDown}
+          direction={"down"}
+          id="FilterButton"
+        >
+          <DropdownToggle className="btn-explorer-action">
+            Filter
+          </DropdownToggle>
+          <DropdownMenu>
+            <DropdownItem
+              key={"None"}
+              value={""}
+              onClick={this.handleChangeFilter}
             >
-              arrow right
+              None
+            </DropdownItem>
+            {this.filterOptions.map((item, _) => {
+              return (
+                <DropdownItem
+                  key={item}
+                  value={item}
+                  onClick={this.handleChangeFilter}
+                >
+                  {item}
+                </DropdownItem>
+              );
+            })}
+          </DropdownMenu>
+        </ButtonDropdown>
+
+        <button
+          className="btn-explorer-action"
+          id="ListViewButton"
+          onClick={this.handleChangeGridMode}
+        >
+          List view
+        </button>
+
+        <button
+          className="btn-explorer-action"
+          id="InfoButton"
+          onClick={this.toggleAboutModal}
+        >
+          Info
+        </button>
+        <FileUploadModal
+          currentPath={currentPath}
+          buttonLabel={"Upload"}
+          buttonClass={"btn-explorer-action"}
+        />
+        <Form inline>
+          <FormGroup>
+            {searchOpen && (
+              <Input
+                type="text"
+                placeholder="Search"
+                value={searchQuery}
+                className="animate-fade-in"
+                onChange={this.changeSearch}
+              />
+            )}
+            <button
+              color=""
+              className="mr-1 btn-explorer-action"
+              onClick={this.handleSearchOpen}
+            >
+              Search / close
             </button>
-          </Form>
-        </div>
-        <div className="d-flex flex-wrap">
-          <button
-            className="mr-1 btn-explorer-action p-1"
-            id="CreateFolderButton"
-            onClick={this.openNewFolderModal}
-          >
-            new folder
-          </button>
+          </FormGroup>
+        </Form>
 
-          <ButtonDropdown
-            isOpen={dropdownOpen}
-            toggle={this.toggleDropDown}
-            direction={"down"}
-            id="FilterButton"
-          >
-            <DropdownToggle className="btn-explorer-action">
-              filter
-            </DropdownToggle>
-            <DropdownMenu>
-              <DropdownItem
-                key={"None"}
-                value={""}
-                onClick={this.handleChangeFilter}
-              >
-                None
-              </DropdownItem>
-              {this.filterOptions.map((item, _) => {
-                return (
-                  <DropdownItem
-                    key={item}
-                    value={item}
-                    onClick={this.handleChangeFilter}
-                  >
-                    {item}
-                  </DropdownItem>
-                );
-              })}
-            </DropdownMenu>
-          </ButtonDropdown>
+        <NewFolder
+          containerID={containerID}
+          isVisible={newFolderModalIsVisible}
+          closeModal={this.closeNewFolderModal}
+        />
 
-          <button
-            className="btn-explorer-action"
-            id="ListViewButton"
-            onClick={this.handleChangeGridMode}
-          >
-            list view mode
-          </button>
-
-          <button
-            className="btn-explorer-action"
-            id="InfoButton"
-            onClick={this.toggleAboutModal}
-          >
-            remote info
-          </button>
-          <FileUploadModal
-            currentPath={currentPath}
-            buttonLabel={"Upload"}
-            buttonClass={"btn-explorer-action"}
-          />
-          <Form inline>
-            <FormGroup>
-              {searchOpen && (
-                <Input
-                  type="text"
-                  placeholder="Search"
-                  value={searchQuery}
-                  className="animate-fade-in"
-                  onChange={this.changeSearch}
-                />
-              )}
-              <button
-                color=""
-                className="mr-1 btn-explorer-action"
-                onClick={this.handleSearchOpen}
-              >
-                Search / close
-              </button>
-            </FormGroup>
-          </Form>
-
-          <NewFolder
-            containerID={containerID}
-            isVisible={newFolderModalIsVisible}
-            closeModal={this.closeNewFolderModal}
-          />
-
-          <Modal isOpen={isAboutModalOpen} toggle={this.toggleAboutModal}>
-            <ModalHeader>Status for {remoteName}</ModalHeader>
-            <ModalBody>
-              <Row>
-                <Col sm={12}>
-                  <div className="chart-wrapper">
-                    <p>Space Usage (in GB)</p>
-                    {doughnutData && !isEmpty(doughnutData) ? (
-                      <Doughnut data={doughnutData} />
-                    ) : (
-                      <React.Fragment>
-                        <Spinner color="primary" />
-                        Loading
-                      </React.Fragment>
-                    )}
-                  </div>
-                </Col>
-              </Row>
-              <Row>
-                <Col sm={12}>
-                  <button color="danger" onClick={this.handleCleanTrash}>
-                    Clean Trash
-                  </button>
-                </Col>
-              </Row>
-            </ModalBody>
-          </Modal>
-        </div>
+        <Modal isOpen={isAboutModalOpen} toggle={this.toggleAboutModal}>
+          <ModalHeader>Status for {remoteName}</ModalHeader>
+          <ModalBody>
+            <Row>
+              <Col sm={12}>
+                <div className="chart-wrapper">
+                  <p>Space Usage (in GB)</p>
+                  {doughnutData && !isEmpty(doughnutData) ? (
+                    <Doughnut data={doughnutData} />
+                  ) : (
+                    <React.Fragment>
+                      <Spinner color="primary" />
+                      Loading
+                    </React.Fragment>
+                  )}
+                </div>
+              </Col>
+            </Row>
+            <Row>
+              <Col sm={12}>
+                <button color="danger" onClick={this.handleCleanTrash}>
+                  Clean Trash
+                </button>
+              </Col>
+            </Row>
+          </ModalBody>
+        </Modal>
       </div>
     );
   }
