@@ -1,6 +1,4 @@
 import React from "react";
-import { Button } from "reactstrap";
-
 import { connect } from "react-redux";
 import { createPath } from "../../../actions/explorerStateActions";
 import * as PropTypes from "prop-types";
@@ -39,8 +37,7 @@ class RemoteExplorerLayout extends React.Component {
         <DndProvider backend={HTML5Backend}>
           <div className={"d-none d-md-block"} data-test="remoteExplorerLayout">
             <div>
-              <Button
-                color={"primary"}
+              <button
                 className={"ml-2 layout-change-button"}
                 onClick={() => this.changeLayout(1, "horizontal")}
               >
@@ -48,9 +45,8 @@ class RemoteExplorerLayout extends React.Component {
                   <div className="w-2.5 bg-white"></div>
                 </div>
                 <span className="sr-only">Single Vertical Pane</span>
-              </Button>
-              <Button
-                color={"primary"}
+              </button>
+              <button
                 className={"ml-2 layout-change-button"}
                 onClick={() => this.changeLayout(2, "horizontal")}
               >
@@ -59,9 +55,8 @@ class RemoteExplorerLayout extends React.Component {
                   <div className="w-3 bg-white"></div>
                 </div>
                 <span className="sr-only">Double Vertical Pane</span>
-              </Button>
-              <Button
-                color={"primary"}
+              </button>
+              <button
                 className={"ml-2 layout-change-button"}
                 onClick={() => this.changeLayout(3, "horizontal")}
               >
@@ -71,7 +66,7 @@ class RemoteExplorerLayout extends React.Component {
                   <div className="w-2 bg-white"></div>
                 </div>
                 <span className="sr-only">Triple Vertical Pane</span>
-              </Button>
+              </button>
             </div>
           </div>
 
