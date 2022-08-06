@@ -1,6 +1,6 @@
 {
-  "short_name": "rclone-webui",
-  "name": "rclone-webui-react",
+  "short_name": "Rclone",
+  "name": "Rclone",
   "icons": [
     {
       "src": "./assets/img/favicon.png",
