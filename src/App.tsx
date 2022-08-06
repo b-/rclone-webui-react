@@ -2,17 +2,16 @@ import React from "react";
 import { HashRouter, Routes, Route } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import ErrorBoundary from "./ErrorHandling/ErrorBoundary";
-import routes from "./routes";
-
-// Containers
-const DefaultLayout = React.lazy(() => import("./containers/DefaultLayout"));
-
-// Pages
-const Login = React.lazy(() => import("./views/Pages/Login/Login"));
-const Register = React.lazy(() => import("./views/Pages/Register"));
-const Page404 = React.lazy(() => import("./views/Pages/Page404"));
-const Page500 = React.lazy(() => import("./views/Pages/Page500"));
+import DefaultLayout from "./containers/DefaultLayout";
+import Login from "./views/Pages/Login/Login";
+import Register from "./views/Pages/Register";
+import Page404 from "./views/Pages/Page404";
+import Page500 from "./views/Pages/Page500";
+import NewDrive from "./views/RemoteManagement/NewDrive/NewDrive";
+import ShowConfig from "./views/RemoteManagement/ShowConfig/ShowConfig";
+import RemoteExplorerLayout from "./views/Explorer/RemoteExplorerLayout";
+import RCloneDashboard from "./views/RCloneDashboard";
+import MountDashboard from "./views/MountDashboard";
 
 function App() {
   return (
@@ -25,15 +24,17 @@ function App() {
           <Route path="/404" element={<Page404 />} />
           <Route path="/500" element={<Page500 />} />
           <Route element={<DefaultLayout />}>
-            {routes.map((route, idx) => {
-              return route.component ? (
-                <Route
-                  key={idx}
-                  path={route.path}
-                  element={<route.component />}
-                />
-              ) : null;
-            })}
+            <Route path="/" element={<ShowConfig />} />
+            <Route path="/newdrive/edit/:drivePrefix" element={<NewDrive />} />
+            <Route path="/newdrive" element={<NewDrive />} />
+            <Route path="/login" element={<Login />} />
+            <Route
+              path="/remoteExplorer/:remoteName/:remotePath"
+              element={<RemoteExplorerLayout />}
+            />
+            <Route path="/remoteExplorer" element={<RemoteExplorerLayout />} />
+            <Route path="/rcloneBackend" element={<RCloneDashboard />} />
+            <Route path="/mountDashboard" element={<MountDashboard />} />
           </Route>
         </Routes>
       </HashRouter>
