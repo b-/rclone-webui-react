@@ -14,11 +14,13 @@ import {
 function DefaultLayout() {
   const inputRef = React.useRef<HTMLInputElement>(null);
   const [bandwidth, setBandwidth] = React.useState();
-  const [backendStatus, setBackendStatus] = React.useState();
+  const [backendStatus, setBackendStatus] = React.useState(false);
   const [ipAddress, setIpAddress] = React.useState("");
 
   const getStatus = () => {
-    getStats().then((res) => setBackendStatus(res));
+    getStats()
+      .then((res) => setBackendStatus(true))
+      .catch(() => setBackendStatus(false));
   };
 
   useEffect(() => {
