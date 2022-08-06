@@ -4,7 +4,6 @@ import { connect } from "react-redux";
 import { getFsInfo, getRemoteNames } from "../../../actions/explorerActions";
 import PropTypes from "prop-types";
 import { changeRemoteName } from "../../../actions/explorerStateActions";
-import { Form } from "reactstrap";
 import { PROP_CURRENT_PATH } from "../../../utils/RclonePropTypes";
 
 class RemotesList extends React.Component {
@@ -22,18 +21,13 @@ class RemotesList extends React.Component {
     this.props.getRemoteNames();
   }
 
-  shouldUpdateRemoteName = (event, { newValue }) => {
-    if (newValue.indexOf("/") === 0) {
-      this.setState({
-        remoteName: newValue,
-        openButtonText: "Open local path",
-      });
-    } else {
-      this.setState({
-        remoteName: newValue,
-        openButtonText: "Open",
-      });
-    }
+  shouldUpdateRemoteName = (event) => {
+    const newValue = event.target.value;
+
+    this.setState({
+      remoteName: newValue,
+      openButtonText: "Open",
+    });
   };
 
   openRemote = (e) => {
@@ -48,41 +42,25 @@ class RemotesList extends React.Component {
     const { isEmpty, remoteName } = this.state;
     const { remotes } = this.props;
     const { hasError } = this.props;
-    // const {updateRemoteNameHandle} = this.props;
 
-    if (hasError) {
-      return <div>Error loading remotes. Please try again.</div>;
-    } else if (isEmpty) {
-      return (
-        <div>
-          Add some remotes to see them here{" "}
-          <span role="img" aria-label="sheep">
-            🐑
-          </span>
-          .
-        </div>
-      );
-    } else {
-      return (
-        <Form onSubmit={this.openRemote}>
-          <div>
-            <RemoteListAutoSuggest
-              value={remoteName}
-              onChange={this.shouldUpdateRemoteName}
-              suggestions={remotes}
-            />
-          </div>
-          <div>
-            <button
-              type="submit"
-              className={"px-2 py-1 bg-black text-white font-bold uppercase"}
-            >
-              {this.state.openButtonText}
-            </button>
-          </div>
-        </Form>
-      );
-    }
+    if (hasError) return <div>Error loading remotes. Please try again.</div>;
+    if (isEmpty) return <div>Add some remotes to see them here.</div>;
+
+    return (
+      <form onSubmit={this.openRemote} className="flex">
+        <RemoteListAutoSuggest
+          value={remoteName}
+          onChange={this.shouldUpdateRemoteName}
+          suggestions={remotes}
+        />
+        <button
+          type="submit"
+          className={"px-2 py-1 bg-black text-white font-bold uppercase"}
+        >
+          {this.state.openButtonText}
+        </button>
+      </form>
+    );
   }
 }
 

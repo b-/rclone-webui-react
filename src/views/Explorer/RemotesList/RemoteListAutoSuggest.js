@@ -1,5 +1,4 @@
-import Autosuggest from "react-autosuggest";
-import React from "react";
+import * as React from "react";
 import PropTypes from "prop-types";
 
 // Teach Autosuggest how to calculate suggestions for any given input value.
@@ -18,14 +17,6 @@ const getSuggestions = (config, value) => {
       );
 };
 
-// When suggestion is clicked, Autosuggest needs to populate the input
-// based on the clicked suggestion. Teach Autosuggest how to calculate the
-// input value for every given suggestion.
-const getSuggestionValue = (suggestion) => suggestion;
-
-// Use your imagination to render suggestions.
-const renderSuggestion = (suggestion) => <div>hdd {suggestion}</div>;
-
 class RemoteListAutoSuggest extends React.Component {
   constructor(props) {
     super(props);
@@ -40,11 +31,9 @@ class RemoteListAutoSuggest extends React.Component {
     };
   }
 
-  // Autosuggest will call this function every time you need to update suggestions.
-  // You already implemented this logic above, so just use it.
-  onSuggestionsFetchRequested = ({ value }) => {
+  componentDidMount = () => {
     this.setState({
-      suggestions: getSuggestions(this.props.suggestions, value),
+      suggestions: getSuggestions(this.props.suggestions, ""),
     });
   };
 
@@ -58,26 +47,27 @@ class RemoteListAutoSuggest extends React.Component {
   render() {
     const { value, onChange } = this.props;
 
-    // Autosuggest will pass through all these props to the input.
-    const inputProps = {
-      placeholder: "Type the name of remote you want to open",
-      value: value,
-      onChange: onChange,
-    };
-
-    // Finally, render it!
     return (
-      <Autosuggest
-        suggestions={this.state.suggestions}
-        onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
-        onSuggestionsClearRequested={this.onSuggestionsClearRequested}
-        getSuggestionValue={getSuggestionValue}
-        renderSuggestion={renderSuggestion}
-        alwaysRenderSuggestions={true}
-        highlightFirstSuggestion={true}
-        inputProps={inputProps}
-        style={{ width: "100%" }}
-      />
+      <>
+        <label htmlFor="remote" className="sr-only">
+          Remote
+        </label>
+        <input
+          list="datalist-remote"
+          id="remote"
+          className="w-full"
+          defaultValue={value}
+          onChange={onChange}
+        />
+
+        <datalist id="datalist-remote">
+          {this.state.suggestions.map((suggestion) => (
+            <option key={suggestion} value={suggestion}>
+              {suggestion}
+            </option>
+          ))}
+        </datalist>
+      </>
     );
   }
 }
