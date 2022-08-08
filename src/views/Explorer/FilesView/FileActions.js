@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useId } from "react";
 import {
   Button,
   DropdownItem,
@@ -8,8 +8,12 @@ import {
 } from "reactstrap";
 import * as PropTypes from "prop-types";
 import * as RclonePropTypes from "../../../utils/RclonePropTypes";
+import cn from "classnames";
+import useDropdownMenu from "react-accessible-dropdown-menu-hook";
 
 function FileActions({ downloadHandle, deleteHandle, item, linkShareHandle }) {
+  const { buttonProps, itemProps, isOpen } = useDropdownMenu(2);
+
   const confirmDelete = (deleteHandle, item) => {
     if (window.confirm(`Are you sure you want to delete ${item.Name}`)) {
       deleteHandle(item);
@@ -30,6 +34,39 @@ function FileActions({ downloadHandle, deleteHandle, item, linkShareHandle }) {
         </Button>
       )}
       <Button color="link">info</Button>
+
+      <div>
+        <button {...buttonProps}>Actions</button>
+        <div
+          className={cn(
+            "absolute bg-white p-2 rounded-xl flex-col gap-2 shadow-md",
+            {
+              flex: isOpen,
+              hidden: !isOpen,
+            }
+          )}
+          role="menu"
+        >
+          <button
+            className={
+              "text-left px-3 py-1 rounded-lg hover:bg-gray-200 focus-within:bg-gray-200"
+            }
+            {...itemProps[1]}
+            onClick={() => linkShareHandle(item)}
+          >
+            Share with a link
+          </button>
+          <button
+            className={
+              "text-left px-3 py-1 rounded-lg hover:bg-gray-200 focus-within:bg-gray-200"
+            }
+            {...itemProps[0]}
+            onClick={() => confirmDelete(deleteHandle, item)}
+          >
+            Delete
+          </button>
+        </div>
+      </div>
 
       <UncontrolledButtonDropdown className="hidden">
         <DropdownToggle color="link">menu</DropdownToggle>
