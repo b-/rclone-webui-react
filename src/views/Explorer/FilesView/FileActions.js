@@ -1,6 +1,5 @@
-import React, { useId } from "react";
+import React from "react";
 import {
-  Button,
   DropdownItem,
   DropdownMenu,
   DropdownToggle,
@@ -25,15 +24,10 @@ function FileActions({ downloadHandle, deleteHandle, item, linkShareHandle }) {
   return (
     <div data-test="fileActionsComponent">
       {!IsDir && (
-        <Button
-          color="link"
-          onClick={() => downloadHandle(item)}
-          data-test="btn-download"
-        >
+        <button onClick={() => downloadHandle(item)} data-test="btn-download">
           download
-        </Button>
+        </button>
       )}
-      <Button color="link">info</Button>
 
       <div>
         <button {...buttonProps}>Actions</button>
@@ -51,7 +45,7 @@ function FileActions({ downloadHandle, deleteHandle, item, linkShareHandle }) {
             className={
               "text-left px-3 py-1 rounded-lg hover:bg-gray-200 focus-within:bg-gray-200"
             }
-            {...itemProps[1]}
+            {...itemProps[0]}
             onClick={() => linkShareHandle(item)}
           >
             Share with a link
@@ -60,7 +54,7 @@ function FileActions({ downloadHandle, deleteHandle, item, linkShareHandle }) {
             className={
               "text-left px-3 py-1 rounded-lg hover:bg-gray-200 focus-within:bg-gray-200"
             }
-            {...itemProps[0]}
+            {...itemProps[1]}
             onClick={() => confirmDelete(deleteHandle, item)}
           >
             Delete
