@@ -80,27 +80,6 @@ function collect(connect, monitor) {
   };
 }
 
-/*
- * END code for react DND
- * */
-
-// Provides the up button view in the files view
-// function UpButtonComponent({upButtonHandle, gridMode}) {
-//     if (gridMode === "card") {
-//         return (
-//             <Col lg={12}>
-//                 <Button onClick={() => upButtonHandle()}>Go Up</Button>
-//             </Col>
-//         )
-//     } else {
-//         return (
-//             <tr onClick={() => upButtonHandle()} className={"pointer-cursor"}>
-//                 <td colSpan={1}/>
-//                 <td colSpan={4}><i className={"fa fa-file-o"}/> Go Up...</td>
-//             </tr>);
-//     }
-// }
-
 /**
  * FilesView component renders files in the file explorer.
  */
@@ -270,7 +249,7 @@ class FilesView extends React.PureComponent {
     }
   };
 
-  getFileComponents = (isDir) => {
+  getFileComponents = () => {
     const { files, containerID, gridMode, fsInfo, loadImages } = this.props;
     const { remoteName, remotePath } = this.props.currentPath;
     // console.log(fsInfo, files);
@@ -281,27 +260,25 @@ class FilesView extends React.PureComponent {
         if (ID === undefined) {
           ID = Name;
         }
-        if (item.IsDir === isDir) {
-          result.push(
-            <FileComponent
-              key={ID}
-              item={item}
-              clickHandler={this.handleFileClick}
-              downloadHandle={this.downloadHandle}
-              deleteHandle={this.deleteHandle}
-              remoteName={remoteName}
-              remotePath={remotePath}
-              gridMode={gridMode}
-              containerID={containerID}
-              linkShareHandle={this.linkShareHandle}
-              loadImages={loadImages}
-              isBucketBased={fsInfo.Features.BucketBased}
-              canCopy={fsInfo.Features.Copy}
-              canMove={fsInfo.Features.Move}
-              itemIdx={1}
-            ></FileComponent>
-          );
-        }
+        result.push(
+          <FileComponent
+            key={ID}
+            item={item}
+            clickHandler={this.handleFileClick}
+            downloadHandle={this.downloadHandle}
+            deleteHandle={this.deleteHandle}
+            remoteName={remoteName}
+            remotePath={remotePath}
+            gridMode={gridMode}
+            containerID={containerID}
+            linkShareHandle={this.linkShareHandle}
+            loadImages={loadImages}
+            isBucketBased={fsInfo.Features.BucketBased}
+            canCopy={fsInfo.Features.Copy}
+            canMove={fsInfo.Features.Move}
+            itemIdx={1}
+          ></FileComponent>
+        );
         return result;
       }, []);
     }
@@ -355,9 +332,9 @@ class FilesView extends React.PureComponent {
         );
       }
 
-      let dirComponentMap = this.getFileComponents(true);
+      // let dirComponentMap = this.getFileComponents(true);
 
-      let fileComponentMap = this.getFileComponents(false);
+      let fileComponentMap = this.getFileComponents();
 
       let renderElement = "";
 
@@ -365,17 +342,9 @@ class FilesView extends React.PureComponent {
         renderElement = (
           <Container fluid={true}>
             <Row>
-              <Col lg={3}>
-                <h3>Directories</h3>
-                <ScrollableDiv height={FILES_VIEW_HEIGHT}>
-                  {dirComponentMap}
-                </ScrollableDiv>
-              </Col>
-              <Col lg={9}>
+              <Col>
                 <h3>Files</h3>
-                <ScrollableDiv height={FILES_VIEW_HEIGHT}>
-                  <Row>{fileComponentMap}</Row>
-                </ScrollableDiv>
+                <Row>{fileComponentMap}</Row>
               </Col>
             </Row>
           </Container>
@@ -386,62 +355,54 @@ class FilesView extends React.PureComponent {
           filterIconClass = "fa fa-lg fa-arrow-up";
         }
         renderElement = (
-          <Container fluid={true} className={"p-0"}>
-            <ScrollableDiv height={FILES_VIEW_HEIGHT}>
-              <Table className="table table-responsive-sm table-striped table-fix-head">
-                <thead>
-                  <tr>
-                    <th
-                      className="pointer-cursor"
-                      onClick={() => this.applySortFilter("name")}
-                    >
-                      Name{" "}
-                      {sortFilter === "name" && (
-                        <i className={filterIconClass} />
-                      )}
-                    </th>
-                    <th
-                      className="pointer-cursor"
-                      onClick={() => this.applySortFilter("size")}
-                    >
-                      Size{" "}
-                      {sortFilter === "size" && (
-                        <i className={filterIconClass} />
-                      )}
-                    </th>
-                    <th
-                      className="d-none d-md-table-cell pointer-cursor"
-                      onClick={() => this.applySortFilter("modified")}
-                    >
-                      Modified{" "}
-                      {sortFilter === "modified" && (
-                        <i className={filterIconClass} />
-                      )}
-                    </th>
-                    <th>Actions</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {files.length > 0 ? (
-                    <React.Fragment>
-                      <tr>
-                        <th colSpan={4}>Directories</th>
-                      </tr>
-                      {dirComponentMap}
-                      <tr>
-                        <th colSpan={4}>Files</th>
-                      </tr>
-                      {fileComponentMap}
-                    </React.Fragment>
-                  ) : (
-                    <tr>
-                      <th colSpan={4}>Files</th>
-                    </tr>
+          <table className="w-full">
+            <thead className="sticky">
+              <tr>
+                <th
+                  className="border border-gray-300 pointer-cursor"
+                  onClick={() => this.applySortFilter("name")}
+                >
+                  Name{" "}
+                  {sortFilter === "name" && <i className={filterIconClass} />}
+                </th>
+                <th
+                  className="border border-gray-300 pointer-cursor"
+                  onClick={() => this.applySortFilter("size")}
+                >
+                  Size{" "}
+                  {sortFilter === "size" && <i className={filterIconClass} />}
+                </th>
+                <th
+                  className="border border-gray-300 pointer-cursor"
+                  onClick={() => this.applySortFilter("modified")}
+                >
+                  Modified{" "}
+                  {sortFilter === "modified" && (
+                    <i className={filterIconClass} />
                   )}
-                </tbody>
-              </Table>
-            </ScrollableDiv>
-          </Container>
+                </th>
+                <th className="border border-gray-300">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {files.length > 0 ? (
+                <React.Fragment>
+                  <tr>
+                    <th className="border border-gray-300" colSpan={4}>
+                      Files
+                    </th>
+                  </tr>
+                  {fileComponentMap}
+                </React.Fragment>
+              ) : (
+                <tr>
+                  <th className="border border-gray-300" colSpan={4}>
+                    No items
+                  </th>
+                </tr>
+              )}
+            </tbody>
+          </table>
         );
       }
 

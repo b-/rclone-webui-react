@@ -35,47 +35,54 @@ class RemoteExplorerLayout extends React.Component {
     return (
       <ErrorBoundary>
         <DndProvider backend={HTML5Backend}>
-          <div className={"d-none d-md-block"} data-test="remoteExplorerLayout">
-            <div>
-              <button
-                className={"ml-2 layout-change-button"}
-                onClick={() => this.changeLayout(1, "horizontal")}
+          <div className="flex flex-col px-10" data-test="backendComponent">
+            <div className="w-full rounded-xl mb-4">
+              <div
+                className={"d-none d-md-block"}
+                data-test="remoteExplorerLayout"
               >
-                <div className="flex p-1 gap-1 w-9 h-5 bg-gray-400">
-                  <div className="w-2.5 bg-white"></div>
+                <div>
+                  <button
+                    className={"ml-2 layout-change-button"}
+                    onClick={() => this.changeLayout(1, "horizontal")}
+                  >
+                    <div className="flex p-1 gap-1 w-9 h-5 bg-gray-400">
+                      <div className="w-2.5 bg-white"></div>
+                    </div>
+                    <span className="sr-only">Single Vertical Pane</span>
+                  </button>
+                  <button
+                    className={"ml-2 layout-change-button"}
+                    onClick={() => this.changeLayout(2, "horizontal")}
+                  >
+                    <div className="flex p-1 gap-1 w-9 h-5 bg-gray-400">
+                      <div className="w-3 bg-white"></div>
+                      <div className="w-3 bg-white"></div>
+                    </div>
+                    <span className="sr-only">Double Vertical Pane</span>
+                  </button>
+                  <button
+                    className={"ml-2 layout-change-button"}
+                    onClick={() => this.changeLayout(3, "horizontal")}
+                  >
+                    <div className="flex p-1 gap-1 w-9 h-5 bg-gray-400">
+                      <div className="w-2 bg-white"></div>
+                      <div className="w-2 bg-white"></div>
+                      <div className="w-2 bg-white"></div>
+                    </div>
+                    <span className="sr-only">Triple Vertical Pane</span>
+                  </button>
                 </div>
-                <span className="sr-only">Single Vertical Pane</span>
-              </button>
-              <button
-                className={"ml-2 layout-change-button"}
-                onClick={() => this.changeLayout(2, "horizontal")}
-              >
-                <div className="flex p-1 gap-1 w-9 h-5 bg-gray-400">
-                  <div className="w-3 bg-white"></div>
-                  <div className="w-3 bg-white"></div>
-                </div>
-                <span className="sr-only">Double Vertical Pane</span>
-              </button>
-              <button
-                className={"ml-2 layout-change-button"}
-                onClick={() => this.changeLayout(3, "horizontal")}
-              >
-                <div className="flex p-1 gap-1 w-9 h-5 bg-gray-400">
-                  <div className="w-2 bg-white"></div>
-                  <div className="w-2 bg-white"></div>
-                  <div className="w-2 bg-white"></div>
-                </div>
-                <span className="sr-only">Triple Vertical Pane</span>
-              </button>
-            </div>
-          </div>
+              </div>
 
-          <div className="flex">
-            <TabbedPanes
-              numCols={numCols}
-              activeRemoteContainerID={activeRemoteContainerID}
-              containers={containers}
-            />
+              <div className="flex">
+                <TabbedPanes
+                  numCols={numCols}
+                  activeRemoteContainerID={activeRemoteContainerID}
+                  containers={containers}
+                />
+              </div>
+            </div>
           </div>
         </DndProvider>
       </ErrorBoundary>

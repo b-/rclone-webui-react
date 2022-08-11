@@ -1,5 +1,4 @@
 import React from "react";
-import { Card, CardBody, Container } from "reactstrap";
 import FilesView from "../FilesView/FilesView";
 import { addColonAtLast } from "../../../utils/Tools";
 import { connect } from "react-redux";
