@@ -132,14 +132,6 @@ function DriveParameters({
   });
 }
 
-// function DriveTypes({config}) {
-//     // console.log(config);
-//     let configMap = config.map((drive, idx) => (
-//         <option key={drive.Prefix} value={idx}>{drive.Description}</option>
-//     ));
-//     return configMap;
-// }
-
 function NewDrive() {
   const [providers, setProviders] = useState<Provider[]>([]);
   const [drive, setDrive] = useState({
@@ -709,23 +701,4 @@ function NewDrive() {
   );
 }
 
-// const mapStateToProps = (state) => ({
-//   /**
-//    * The list of all providers.
-//    */
-//   providers: state.config.providers,
-// });
-
-// NewDrive.propTypes = {
-//   providers: PropTypes.array.isRequired,
-//   getProviders: PropTypes.func.isRequired,
-//   isEdit: PropTypes.bool.isRequired,
-//   driveName: PropTypes.string,
-// };
-
-// NewDrive.defaultProps = {
-//   isEdit: false,
-// };
-
-// export default connect(mapStateToProps, { getProviders })(NewDrive);
 export default NewDrive;
