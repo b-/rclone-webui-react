@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Card, CardBody, Col, FormGroup, Label } from "reactstrap";
-// import {config} from "./config.js";
+import { Card, CardBody } from "reactstrap";
 import NewDriveAuthModal from "../../Base/NewDriveAuthModal";
 import axiosInstance from "../../../utils/API/API";
 import {
@@ -13,12 +12,10 @@ import {
 } from "../../../utils/Tools";
 import { toast } from "react-toastify";
 import { NEW_DRIVE_CONFIG_REFRESH_TIMEOUT } from "../../../utils/Constants";
-import ErrorBoundary from "../../../ErrorHandling/ErrorBoundary";
 import urls from "../../../utils/API/endpoint";
 import { getAllProviders } from "rclone-api";
-import { useLocation, useMatch, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import cn from "classnames";
-import ProviderAutoSuggest from "./ProviderAutoSuggest";
 import { Provider } from "../../../@types/provider";
 
 /**
@@ -536,115 +533,114 @@ function NewDrive() {
 
   return (
     <div data-test="newDriveComponent">
-      <ErrorBoundary>
-        <nav className="mb-4">
-          <ul className="flex border-b-2 border-gray-200 gap-3">
-            {stepTitles.map((item, idx) => (
-              <li key={idx} className="-mb-[2px]">
-                <button
-                  className={cn(
-                    {
-                      "font-bold border-b-2 border-black":
-                        currentStepNumber === idx,
-                    },
-                    "p-2"
-                  )}
-                  onClick={() => setCurrentStep(idx)}
-                >
-                  {item}
+      <nav className="mb-4">
+        <ul className="flex border-b-2 border-gray-200 gap-3">
+          {stepTitles.map((item, idx) => (
+            <li key={idx} className="-mb-[2px]">
+              <button
+                className={cn(
+                  {
+                    "font-bold border-b-2 border-black":
+                      currentStepNumber === idx,
+                  },
+                  "p-2"
+                )}
+                onClick={() => setCurrentStep(idx)}
+              >
+                {item}
+              </button>
+            </li>
+          ))}
+        </ul>
+      </nav>
+      <div
+        className={cn({
+          hidden: currentStepNumber !== 0,
+          block: currentStepNumber === 0,
+        })}
+      >
+        <Card>
+          <CardBody>
+            <label htmlFor="driveName">Remote name</label>
+            <input
+              className="bg-gray-200 rounded-lg py-2 px-3 focus:outline-gray-400"
+              type="text"
+              value={drive.name}
+              name="name"
+              id="driveName"
+              onChange={changeName}
+              required={true}
+            />
+            {/* todo: fix validation  */}
+            {drive.nameIsValid && <p>Sweet! that name is available</p>}
+            {!drive.nameIsValid && <p>Name already used.</p>}
+
+            <div>
+              <label htmlFor="driveType">Select</label>
+              <select onChange={changeDriveType}>
+                {providers.map((provider) => (
+                  <option value={provider.Name}>{provider.Name}</option>
+                ))}
+              </select>
+            </div>
+            <div className="clearfix">
+              <div className="float-right">
+                <button className="ml-3 btn-blue" onClick={gotoNextStep}>
+                  Next
                 </button>
-              </li>
-            ))}
-          </ul>
-        </nav>
-        <div
-          className={cn({
-            hidden: currentStepNumber !== 0,
-            block: currentStepNumber === 0,
-          })}
-        >
-          <Card>
-            <CardBody>
-              <label htmlFor="driveName">Remote name</label>
-              <input
-                className="bg-gray-200 rounded-lg py-2 px-3 focus:outline-gray-400"
-                type="text"
-                value={drive.name}
-                name="name"
-                id="driveName"
-                onChange={changeName}
-                required={true}
+              </div>
+            </div>
+          </CardBody>
+        </Card>
+      </div>
+      <div
+        className={cn({
+          hidden: currentStepNumber !== 1,
+          block: currentStepNumber === 1,
+        })}
+      >
+        <Card>
+          <CardBody>
+            {drivePrefix && (
+              <DriveParameters
+                drivePrefix={drivePrefix}
+                loadAdvanced={false}
+                changeHandler={handleInputChange}
+                errorsMap={formErrors}
+                isValidMap={isValid}
+                currentValues={formValues}
+                config={providers}
               />
-              {/* todo: fix validation  */}
-              {drive.nameIsValid && <p>Sweet! that name is available</p>}
-              {!drive.nameIsValid && <p>Name already used.</p>}
+            )}
 
-              <div>
-                <label htmlFor="driveType">Select</label>
-                <select onChange={changeDriveType}>
-                  {providers.map((provider) => (
-                    <option value={provider.Name}>{provider.Name}</option>
-                  ))}
-                </select>
-              </div>
-              <div className="clearfix">
-                <div className="float-right">
-                  <button className="ml-3 btn-blue" onClick={gotoNextStep}>
-                    Next
-                  </button>
-                </div>
-              </div>
-            </CardBody>
-          </Card>
-        </div>
-        <div
-          className={cn({
-            hidden: currentStepNumber !== 1,
-            block: currentStepNumber === 1,
-          })}
-        >
-          <Card>
-            <CardBody>
-              {drivePrefix && (
-                <DriveParameters
-                  drivePrefix={drivePrefix}
-                  loadAdvanced={false}
-                  changeHandler={handleInputChange}
-                  errorsMap={formErrors}
-                  isValidMap={isValid}
-                  currentValues={formValues}
-                  config={providers}
+            <div className="clearfix">
+              <div className="float-right">
+                <input
+                  type="checkbox"
+                  checked={advancedOptions}
+                  onChange={editAdvancedOptions}
                 />
-              )}
+                <span className="mr-3">Edit Advanced Options</span>
+                <button className="btn-no-background" onClick={gotoPrevStep}>
+                  Go back
+                </button>
 
-              <div className="clearfix">
-                <div className="float-right">
-                  <input
-                    type="checkbox"
-                    checked={advancedOptions}
-                    onChange={editAdvancedOptions}
-                  />
-                  <span className="mr-3">Edit Advanced Options</span>
-                  <button className="btn-no-background" onClick={gotoPrevStep}>
-                    Go back
-                  </button>
-
-                  <button className="ml-3 btn-blue" onClick={gotoNextStep}>
-                    Next
-                  </button>
-                </div>
+                <button className="ml-3 btn-blue" onClick={gotoNextStep}>
+                  Next
+                </button>
               </div>
-            </CardBody>
-          </Card>
-        </div>
-        <div
-          className={cn({
-            hidden: currentStepNumber !== 2,
-            block: currentStepNumber === 2,
-          })}
-        >
-          <Card>
-            {/*
+            </div>
+          </CardBody>
+        </Card>
+      </div>
+      <div
+        className={cn({
+          hidden: currentStepNumber !== 2,
+          block: currentStepNumber === 2,
+        })}
+      >
+        <Card>
+          {/*
                     <CardHeader>
                       <h5>
                         <Button color="link" name="colAdvanced" onClick={this.toggle}
@@ -653,8 +649,8 @@ function NewDrive() {
                       </h5>
                     </CardHeader> */}
 
-            <CardBody>
-              {/* <DriveParameters
+          <CardBody>
+            {/* <DriveParameters
                 drivePrefix={drivePrefix}
                 loadAdvanced={true}
                 changeHandler={this.handleInputChange}
@@ -664,39 +660,38 @@ function NewDrive() {
                 config={providers}
               /> */}
 
-              <div className="clearfix">
-                <div className="float-right">
-                  <input
-                    type="checkbox"
-                    checked={advancedOptions}
-                    onChange={editAdvancedOptions}
-                  />
-                  <span className="mr-3">Edit Advanced Options</span>
-                  <button className="btn-no-background" onClick={gotoPrevStep}>
-                    Go back
-                  </button>
+            <div className="clearfix">
+              <div className="float-right">
+                <input
+                  type="checkbox"
+                  checked={advancedOptions}
+                  onChange={editAdvancedOptions}
+                />
+                <span className="mr-3">Edit Advanced Options</span>
+                <button className="btn-no-background" onClick={gotoPrevStep}>
+                  Go back
+                </button>
 
-                  <button className="ml-3 btn-blue" onClick={gotoNextStep}>
-                    Next
-                  </button>
-                </div>
+                <button className="ml-3 btn-blue" onClick={gotoNextStep}>
+                  Next
+                </button>
               </div>
-            </CardBody>
-          </Card>
+            </div>
+          </CardBody>
+        </Card>
+      </div>
+      <div className="mt-10">
+        <div className="mb-3">
+          <button type="reset" onClick={() => clearForm()}>
+            Clear
+          </button>
+          <button type="submit">Create Config</button>
         </div>
-        <div className="mt-10">
-          <div className="mb-3">
-            <button type="reset" onClick={() => clearForm()}>
-              Clear
-            </button>
-            <button type="submit">Create Config</button>
-          </div>
-        </div>
-        <NewDriveAuthModal
-          isVisible={authModalIsVisible}
-          closeModal={toggleAuthModal}
-        />
-      </ErrorBoundary>
+      </div>
+      <NewDriveAuthModal
+        isVisible={authModalIsVisible}
+        closeModal={toggleAuthModal}
+      />
     </div>
   );
 }

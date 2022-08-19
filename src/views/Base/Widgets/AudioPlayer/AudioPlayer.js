@@ -3,7 +3,6 @@ import { Button, Modal } from "reactstrap";
 import * as ReactDOM from "react-dom";
 import { MODAL_ROOT_ELEMENT } from "../../../../utils/Constants";
 import * as PropTypes from "prop-types";
-import ErrorBoundary from "../../../../ErrorHandling/ErrorBoundary";
 
 function AudioPlayer({ playbackURL, MimeType }) {
   const [preview, setPreview] = useState(true);
@@ -16,10 +15,7 @@ function AudioPlayer({ playbackURL, MimeType }) {
   let element;
   if (preview) {
     element = (
-      <div
-        className="img-thumbnail w-100 text-center"
-        data-test="audioPlayerWidget"
-      >
+      <div className="img-thumbnail w-100 text-center">
         <Button color="link" onClick={hideFull}>
           <audio controls>
             <source src={playbackURL} type={MimeType} />
@@ -47,7 +43,7 @@ function AudioPlayer({ playbackURL, MimeType }) {
     );
   }
 
-  return <ErrorBoundary>{element}</ErrorBoundary>;
+  return <>{element}</>;
 }
 
 AudioPlayer.propTypes = {

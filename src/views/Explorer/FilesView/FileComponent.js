@@ -9,7 +9,6 @@ import { toast } from "react-toastify";
 import * as PropTypes from "prop-types";
 import MediaWidget, { isMedia } from "../../Base/MediaWidget/MediaWidget";
 import { PROP_ITEM } from "../../../utils/RclonePropTypes";
-import ErrorBoundary from "../../../ErrorHandling/ErrorBoundary";
 import FileActions from "./FileActions";
 import FileIcon from "./FileIcon";
 
@@ -213,7 +212,7 @@ class FileComponent extends React.Component {
         </tr>
       );
     }
-    return <ErrorBoundary>{element}</ErrorBoundary>;
+    return <>{element}</>;
   }
 }
 

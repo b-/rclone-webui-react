@@ -28,7 +28,6 @@ import {
   PROP_FS_INFO,
 } from "../../../utils/RclonePropTypes";
 import * as PropTypes from "prop-types";
-import ErrorBoundary from "../../../ErrorHandling/ErrorBoundary";
 import { createNewPublicLink, deleteFile, purgeDir } from "rclone-api";
 import { createSelector } from "reselect";
 import DropOverlay from "../../Base/DropOverlay/DropOverlay";
@@ -409,7 +408,7 @@ class FilesView extends React.PureComponent {
       return connectDropTarget(
         <div className={"row"}>
           {isOver && canDrop && <DropOverlay />}
-          <ErrorBoundary>
+          <>
             <Alert
               color="info"
               isOpen={isDownloadProgress}
@@ -427,7 +426,7 @@ class FilesView extends React.PureComponent {
               isVisible={showLinkShareModal}
               linkUrl={generatedLink}
             />
-          </ErrorBoundary>
+          </>
         </div>
       );
     }

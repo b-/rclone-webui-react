@@ -8,7 +8,6 @@ import VideoPlayer from "../Widgets/VideoPlayer/VideoPlayer";
 import { IP_ADDRESS_KEY } from "../../../utils/Constants";
 import { connect } from "react-redux";
 import ImageLoader from "../Widgets/ImageLoader/ImageLoader";
-import ErrorBoundary from "../../../ErrorHandling/ErrorBoundary";
 import AudioPlayer from "../Widgets/AudioPlayer/AudioPlayer";
 
 export function isMedia(MimeType) {
@@ -82,7 +81,7 @@ class MediaWidget extends React.Component {
 
     let element =
       isMedia(MimeType) && loadMedia ? this.getRenderForItem() : null;
-    return <ErrorBoundary>{element}</ErrorBoundary>;
+    return <>{element}</>;
   }
 }
 

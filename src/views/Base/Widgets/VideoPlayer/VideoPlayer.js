@@ -3,7 +3,6 @@ import { Button, Modal } from "reactstrap";
 import * as ReactDOM from "react-dom";
 import { MODAL_ROOT_ELEMENT } from "../../../../utils/Constants";
 import * as PropTypes from "prop-types";
-import ErrorBoundary from "../../../../ErrorHandling/ErrorBoundary";
 
 import ReactAwesomePlayer from "react-awesome-player";
 
@@ -104,7 +103,7 @@ function VideoPlayer({ playbackURL, MimeType }) {
     );
   }
 
-  return <ErrorBoundary>{element}</ErrorBoundary>;
+  return <>{element}</>;
 }
 
 VideoPlayer.propTypes = {
